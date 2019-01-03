@@ -950,6 +950,12 @@ h1, h2, h3, h4, h5, h6 {
 	text-shadow: 2px 2px 2px rgba(128,128,128,0.5);	
 }
 
+.unordered-list li .rule {
+	font-weight: 500;
+	color: #000000;
+	text-shadow: 2px 2px 2px rgba(128,128,128,0.5);	
+}
+
 .ordered-list li .rule-description {
 	font-weight: 400;
 	color: #666666;	
@@ -960,7 +966,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 300;
 	font-size: smaller;
 	color: #666666;
-	text-emphasis-style: triangle;
 	font-style: italic;
 }
 
@@ -1883,6 +1888,18 @@ body.mobile-nav-active #mobile-nav-toggle {
     height: 100%;
     z-index: 2;
 }
+.banner-area2 {
+        background: url(../img/header-bg.jpg) center;
+        background-size: cover
+}
+
+.banner-area2 .overlay-bg {	
+	background-color: rgba(142,59,240,0.5);
+	overflow: hidden;
+    height: 100%;
+    z-index: 2;
+}
+
 .banner-content {
 	margin-top: 90px;
 	text-align: center;
@@ -1993,6 +2010,23 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 .single-feature .lnr, .single-feature .fa, .single-feature .fab {
 	font-size: 30px
+}
+
+.bng-header {
+	font-size: 50px;
+	padding: 0;
+	color: white;
+	font-family: 'Font Bungle';
+    font-weight: 400; 
+	speak: none;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .single-feature .bng {
@@ -2378,9 +2412,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 .single-testimonial {
 	background-color: #fff;
 	padding-top: 25px;
-	padding-right: 20px;
-	padding-left: 20px;
-	padding-bottom: 12px
+	padding-right: 30px;
+	padding-left: 12px;
+	padding-bottom: 30px
 }
 .single-testimonial .thumb {
 	margin-right: 30px;
@@ -2612,7 +2646,8 @@ font-weight:300
 
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;}
+	-moz-osx-font-smoothing: grayscale;
+}
 @font-face {
   font-family: 'Font Bungle';
   font-style: normal;

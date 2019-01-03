@@ -10,11 +10,11 @@
 		<!-- Meta Description -->
 		<meta name="description" content="Solarian Clan, a home for casual but active Guardians">
 		<!-- Meta Keyword -->
-		<meta name="keywords" content="Solarian,Clan,Destiny,Destiny 2,rules,policies,procedures,soren42,tracon22s,kevdawg,Freak-0,NotDisliked,Bungie,PS4,PSN,PC,BattleNet,stats,Guardians,Tournament,challenges,Ghost,game,Activision,player">
+		<meta name="keywords" content="Solarian,Clan,Destiny,Destiny 2,tournaments,Breakthrough the Lines,Equinox of Legends,A Gunslinger Rises,Outlaws Rising,soren42,tracon22s,kevdawg,Freak-0,NotDisliked,Bungie,PS4,PSN,PC,BattleNet,stats,Guardians,Tournament,challenges,Ghost,game,Activision,player">
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
-		<title>Solarian Clan :: Rules</title>
+		<title>Solarian Clan :: Tournaments</title>
 
 		<!-- No Caching -->
 		<meta http-equiv="Cache-Control" content="no-store" />
@@ -80,8 +80,9 @@
 					<div class="row height align-items-center justify-content-center">
 						<div class="col-lg-10">
 							<div class="generic-banner-content">
-								<h2 class="text-white">Policies &amp; Procedures</h2>
-								<p class="text-white">We're a friendly, social group, but we're also an active group of Destiny players.<br />These simple rules keep our community vibrant, welcoming, and respectful.</p>
+								<h2 class="text-white">Community Crucible Tournaments</h2>
+								<span class="bng-header bng-clanbanner"></span>
+								<p class="text-white">Solarian hosts seasonal player versus player tournaments for all the members of our community.</p>
 							</div>							
 						</div>
 					</div>
@@ -101,7 +102,7 @@
 										<li><span class="rule">Clan members should be at least 16 years of age</span> <span class="exception">(with a few notable exceptions)</span><br />
 											<span class="rule-description">While our community is "family-friendly", we aim to create a mature environment of mutual respect between members.  No perspective member under the age of 16 will be considered unless they are either related to an existing member, or have prior approval from an administrator.  To obtain prior approval, contact <a href="mailto:admin@solarian.net" hreflang="en-uk" rel="author">admin@solarian.net</a> and explain why you'd like to join.  You will be asked to play a session with an admin, as well as complete the New Member's Agreement, in order to help us assess if you'd be a good fit for the clan.</span></li>
 										<li><span class="rule">Clan members must be active in the community Discord</span><br />
-											<span class="rule-description">Our Discord server is the heart &amp; soul of our community.  To that end, all players must be <b>registered</b> members of the clan Discord.  To register, simply issue the command: <span class="code">?register</span> and follow the instructions provided in the direct message from Charlemagne.  Our Discord is open to all players and fans of the Destiny™ series, not just clan members — so invite your friends!</span></li>
+											<span class="rule-description">Our Discord server <span class="exception">(also known as a "Guild")</span> is the heart &amp; soul of our community.  To that end, all players must be <b>registered</b> members of the clan Discord.  To register, simply issue the command: <span class="code">?register</span> and follow the instructions provided in the direct message from Charlemagne.  Our Discord is open to all players and fans of the Destiny™ series, not just clan members — so invite your friends!</span></li>
 										<li><span class="rule">Clan members must participate in at least one event each season</span><br />
 											<span class="rule-description">To help maintain a level of community engagement, all members are requested to participate in at least one clan event each season.  Qualifying events include, but are not limited to PvP Tournaments, PvE Challenges, a Drop-In Parties, and Clan Raids.</span></li>
 										<li><span class="rule">New clan members have 15 days to transition from Beginners to full Members</span><br />
@@ -123,7 +124,9 @@
 										<li><span class="rule">Communicate with Clan Members in the Discord</span><br />
 											<span class="rule-description">The Destiny mobile app is quite unreliable with notifications, so please use the Discord to communicate with other community members &mdash; not the Destiny app, not platform messaging, and not Bungie.Net.  Platform messaging (PS Messages, BattleNet, etc.) tends to obstruct players' view when it pops up and is difficult to reply to without using the mobile application on console.</span></li>
 										<li><span class="rule">Utilise the smallest possible notification group and appropriate channel</span><br />
-											<span class="rule-description">Our Discord has roles and channels for community members looking for others to play with.  Additionally, while we don't disable regular users ability to <a href="https://www.youtube.com/watch?v=ePXoYBBaSqQ">@everyone</a>, we strongly discourage it's use.  There are notification groups to find @Raiders, @Cruciblers, @PS4 Players, and @PC Players.  Channels exist to plan game sessions by platform.  Finally, if your fireteam is using the Discord as a text chat platform (instead of speaking), please don't carry on in #general &mdash; use the specially-created #fireteam-text-chat channel so others can mute your team's conversation.</span></li>
+											<span class="rule-description">Our Discord has roles and channels for community members looking for others to play with.  Additionally, while we don't disable regular users ability to <a href="https://www.youtube.com/watch?v=ePXoYBBaSqQ">@everyone</a>, we strongly discourage it's use.  There are notification groups to find @Raiders, @Cruciblers, @PS4 Players, and @PC Players.  Channels exist to plan game session by platform.  Finally, if your fireteam is using the Discord as a text chat platform (instead of speaking), please don't carry on in #general &mdash; use the specially-created #fireteam-text-chat channel so others can mute your team's conversation.</span></li>
+										<li><span class="rule">Utilise the smallest possible notification group and appropriate channel</span><br />
+											<span class="rule-description">Our Discord has roles and channels for community members looking for others to play with.  Additionally, while we don't disable regular users ability to <a href="https://www.youtube.com/watch?v=ePXoYBBaSqQ">@everyone</a>, we strongly discourage it's use.  There are notification groups to find @Raiders, @Cruciblers, @PS4 Players, and @PC Players.  Channels exist to plan game session by platform.  Finally, if your fireteam is using the Discord as a text chat platform (instead of speaking), please don't carry on in #general &mdash; use the specially-created #fireteam-text-chat channel so others can mute your team's conversation.</span></li>
 										<li><span class="rule">Send Descriptive Invitations</span><br />
 											<span class="rule-description">If you're inviting another community member to join you in-game, please let them know up front what you're looking to do.  "Can someone help with this strike?" isn't nearly as useful as, "Looking for 2 ✧600+ Guardians to do a single 100k+ Nightfall run on The Arms Dealer with Void Burn".  And don't even bother with "Play Destiny" on the PlayStation...</span></li>
 										<li><span class="rule">Don't join other players without an invitation</span><br />

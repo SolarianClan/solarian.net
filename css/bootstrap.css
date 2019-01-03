@@ -397,7 +397,8 @@ mark, .mark {
 	alignment-adjust: middle;
 	align-items: unsafe center;
 	}
-.avatars {
+.avatars{max-width:100%;height:auto}
+.avatar {
 	max-width: 25%;
 	height: auto;
 	min-width: fit-content;
