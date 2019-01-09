@@ -83,6 +83,15 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
 	font-weight: 600
 }
+.warning-box {
+	border: thick;
+	border-style: ridge;
+	border-color: red;
+	border-radius: 5px;
+	margin: 10px;
+	padding: 5px;
+	text-align: justify;
+}
 .h1, .h2, .h3, .h4, .h5, .h6 {
 	margin-bottom: 0;
 	margin-top: 0;
@@ -1643,6 +1652,18 @@ h1, h2, h3, h4, h5, h6 {
 	font-style: normal;
 	font-weight: normal
 }
+
+@font-face {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: 900;
+  src: url("../webfonts/fa-solid-900.eot");
+  src: url("../webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.woff") format("woff"), url("../webfonts/fa-solid-900.ttf") format("truetype"), url("../webfonts/fa-solid-900.svg#fontawesome") format("svg"); }
+
+.fa,
+.fas {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900; }
 .sf-arrows ul .sf-with-ul:after {
 	content: "\f105"
 }
@@ -1885,7 +1906,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .banner-area .overlay-bg {	
 	background-color: rgba(142,59,240,0.5);
 	overflow: hidden;
-    height: 100%;
+    height: 100%; 
     z-index: 2;
 }
 .banner-area2 {
@@ -1904,7 +1925,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 	margin-top: 90px;
 	text-align: center;
 	overflow: hidden;
-    height: 100%;
+    /* height: 100%; */
     z-index: 2;
 }
 .banner-content h1 {
@@ -2628,12 +2649,68 @@ font-weight:300
 .switch-wrap p {
 	margin: 0
 }
+.purple {
+	color: rgba(128,0,215,0.5);
+	background-color: rgba(128,0,215,0.5);
+}
+.blue {
+	color: rgba(0,0,215,0.5);
+	background-color: rgba(0,0,215,0.5);
+}
 
 .bng-guidedgames:before {
   content: "\f145"; }
 
 .bng-clanbanner:before {
   content: "\f143"; }
+
+.bng-tower:before {
+	content: "\f10f";
+}
+.bng-engram:before {
+	content: "\f144";
+}
+.bng-darkness:before {
+	content: "\f12c";
+}
+.bng-skull:before {
+	content: "\f129";
+}
+.bng-ship:before {
+	content: "\f128";
+}
+.bng-raid:before {
+	content: "\f140";
+}
+.bng-crucible:before {
+	content: "\f13f";
+}
+.bng-competative:before {
+	content: "\f14a";
+}
+.bng-ghost:before {
+	content: "\f121";
+}
+.bng-noghost:before {
+	content: "\f14b";
+}
+.bng-queenswrath:before {
+	content: "\f106";
+}
+.bng-cabal:before {
+	content: "\f107";
+}
+.bng-fallen:before {
+	content: "\f108";
+}
+.bng-hive:before {
+	content: "\f109";
+}
+.bng-vex:before {
+	content: "\f10a";
+}
+
+
 
 .bng {
   font-family: 'Font Bungle';
@@ -2654,3 +2731,22 @@ font-weight:300
   font-weight: 900;
   src: url("../fonts/fontbungle.eot");
   src: url("../fonts/fontbungle.eot?#iefix") format("embedded-opentype"), url("../fonts/fontbungle.woff") format("woff"), url("../fonts/fontbungle.ttf") format("truetype"), url("../fonts/fontbungle.svg#fontbungle") format("svg"); }
+
+.platform-select:before { 
+	content: ' '; 
+	display: block;
+	font-size: smaller;
+}
+.wtfix-banner {
+	padding: 14px 0;
+	background: rgba(0,0,0,1);
+	color: rgba(255,255,255,1);
+}
+.wtfix-banner .inner {
+	padding: 14px 0;
+	background: rgba(0,0,0,1);
+	color: rgba(255,255,255,1);
+	width: 75% content-box;
+	text-align: left;
+	height: 50px;
+}

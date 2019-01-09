@@ -1,58 +1,6 @@
 	<!DOCTYPE html>
 	<html lang="en-uk" class="no-js">
-	<head>
-		<!-- Mobile Specific Meta -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/favicon.png">
-		<!-- Author Meta -->
-		<meta name="author" content="Solarian Clan">
-		<!-- Meta Description -->
-		<meta name="description" content="Solarian Clan, a home for casual but active Guardians">
-		<!-- Meta Keyword -->
-		<meta name="keywords" content="Solarian,Clan,Destiny,Destiny 2,soren42,tracon22s,kevdawg,Freak-0,NotDisliked,Bungie,PS4,PSN,PC,BattleNet,stats,Guardians,Tournament,challenges,Ghost,game,Activision,player">
-		<!-- meta character set -->
-		<meta charset="UTF-8">
-		<!-- Site Title -->
-		<title>Solarian Clan :: Home</title>
-		
-		<!-- No Caching -->
-		<meta http-equiv="Cache-Control" content="no-store" />
-
-		<!-- Google LD Data -->
-		<script type="application/ld+json">
-			{
-			  "@context": "http://schema.org",
-			  "@type": "Organization",
-			  "url": "https://solarian.net/",
-			  "name": "Solarian Clan",
-			  "contactPoint": {
-				"@type": "ContactPoint",
-				"email": "admin@solarian.net",
-				"contactType": "Adminstration"
-			  }
-			}
-		</script>
-		
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
-			CSS
-			============================================= -->
-			<link rel="stylesheet" href="css/linearicons.css">
-			<link rel="stylesheet" href="css/font-awesome.min.css">
-			<link rel="stylesheet" href="css/bootstrap.css">
-			<link rel="stylesheet" href="css/magnific-popup.css">
-			<link rel="stylesheet" href="css/nice-select.css">					
-			<link rel="stylesheet" href="css/animate.min.css">
-			<link rel="stylesheet" href="css/owl.carousel.css">
-			<link rel="stylesheet" href="css/main.css">
-			<link rel="stylesheet" href="css/v4-shims.css">
-			<link rel="stylesheet" href="css/all.css">
-<!--			<script src="js/fontawesome.min.js"></script>
-			<script src="js/v4-shims.js"></script>
-			<script src="js/all.js"></script>
--->			
-		</head>
+		<?php require_once("header.php"); ?>
 		<body>
 
 			  <header id="header" id="home">
@@ -102,7 +50,16 @@
 				</div>					
 			</section>
 			<!-- End banner Area -->	
-
+			<section class="wtfix-banner">
+				<div class="container-fluid">
+					<div class="row d-flex justify-content-center">
+							<div class="wtfix-banner inner">
+							<!-- <img src="img/wtfix.png" style="max-height: 50px; max-width: 50px;"> -->
+							Solarian is the official clan of <a href="https://wherethefuckisxur.com/">wherethefuckxur.com</a>.
+							</div>
+					</div>
+				</div>
+			</section>
 			<!-- Start feature Area -->
 			<section class="feature-area pb-100">
 				<div class="container-fluid">
@@ -163,7 +120,7 @@
 						<div class="menu-content pb-60 col-lg-10">
 							<div class="title text-center">
 								<h1 class="mb-10">Multiple Platforms, One Community</h1>
-								<p>Our clan spans several in-game clans on both PC and PS4</p>
+								<p>Our clan spans several in-game clans on PC, XBox, and PS4</p>
 							</div>
 						</div>
 					</div>						
@@ -496,6 +453,7 @@
 									<h4 mt-30>tracon22s, Co-Founder</h4>
 									<div class="star">
 										<span class="fab fa-playstation"></span>
+										<span class="fab fa-windows"></span>
 										<b>Triumph Score:</b> <?php print file_get_contents("http://solarian.net/triumphscorebyname.php?name=tracon22s") ?>					
 									</div>
 								</div>
@@ -506,12 +464,27 @@
 								</div>
 								<div class="desc">
 									<p>
-										NotDisliked a devoted raider, even having a first 24 hour clear under his belt!  You can find him online sporadically but often, as his university schedule varies.
+										NotDisliked is our lead PC Admin.  He's a devoted raider, even having a first 24 hour clear under his belt!  You can find him online sporadically but often, as his university schedule varies.
 									</p>
-									<h4 mt-30>NotDisliked#1595, Lead PC Admin</h4>
+									<h4 mt-30>NotDisliked#1595, Administrator</h4>
 									<div class="star">
 										<span class="fab fa-windows"></span>
 										<b>Triumph Score:</b> <?php print file_get_contents("http://solarian.net/triumphscorebyname.php?name=NotDisliked%231595") ?>
+									</div>
+								</div>
+							</div>
+							<div class="single-testimonial item d-flex flex-row">
+								<div class="thumb">
+									<img class="avatars" src="img/rogue-calypso.png" alt="">
+								</div>
+								<div class="desc">
+									<p>
+										Rogue is our lead XBox Admin.  She's an amazing graphic artist and avid gamer. Her clan, Art of Mayhem, became part of the Solarian family at the beginning of 2019.
+									</p>
+									<h4 mt-30>Rogue Calypso, Administrator</h4>
+									<div class="star">
+										<span class="fab fa-xbox"></span>
+										<b>Triumph Score:</b> <?php print file_get_contents("http://solarian.net/triumphscore.php?id=4611686018461293523&p=1") ?>
 									</div>
 								</div>
 							</div>
@@ -523,7 +496,7 @@
 									<p>
 										Freak is our man-about-platform, regularly playing on both PS4 and PC.  He's a Crucible juggernaut <i>and</i> a master raider. 
 									</p>
-									<h4 mt-30>Freak-0-, PC/PS4 Admin</h4>
+									<h4 mt-30>Freak-0-, Administrator</h4>
 									<div class="star">
 										<span class="fab fa-playstation"></span>
 										<span class="fab fa-windows"></span>
@@ -537,9 +510,9 @@
 								</div>
 								<div class="desc">
 									<p>
-										Kev was our clan's first PC admin, migrating from being a founding PS4 player. He plays around his work &amp; family schedule.  Destiny always holds new &amp; amazing things in store for him, regardless of how long he's played.
+										Kev plays around his work &amp; family schedule.  Destiny always holds new &amp; amazing things in store for him, regardless of how long he's played.
 									</p>
-									<h4 mt-30>kevdawg2003, PC/PS4 Admin</h4>
+									<h4 mt-30>kevdawg2003, Administrator</h4>
 									<div class="star">
 										<span class="fab fa-playstation"></span>
 										<span class="fab fa-windows"></span>
@@ -547,24 +520,81 @@
 									</div>
 								</div>
 							</div>
-							<!-- <div class="single-testimonial item d-flex flex-row">
+							<div class="single-testimonial item d-flex flex-row">
 								<div class="thumb">
-									<img class="img-fluid" src="img/t2.png" alt="">
+									<img class="avatars" src="img/friendly.png" alt="">
 								</div>
 								<div class="desc">
 									<p>
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware.
+										Friendly co-leads our Crucible team for console. He can often be found railing against matchmaking, engram RNG, and his network connection. 
 									</p>
-									<h4 mt-30>Mark Alviro Wiens</h4>
+									<h4 mt-30>Friendly_Death_, Crucible Captain</h4>
 									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
+										<span class="fab fa-playstation"></span>
+										<b>Triumph Score:</b> <?php print file_get_contents("http://solarian.net/triumphscorebyname.php?name=Friendly_Death_") ?>
 									</div>
 								</div>
-							</div>	-->							
+							</div>
+							<div class="single-testimonial item d-flex flex-row">
+								<div class="thumb">
+									<img class="avatars" src="img/dup.png" alt="">
+								</div>
+								<div class="desc">
+									<p>
+										Dup co-leads our Crucible team for console. He is our most active streamer, often found sharing his PvP exploits with his Twitch audience. 
+									</p>
+									<h4 mt-30>Dup-46, Crucible Captain</h4>
+									<div class="star">
+										<span class="fab fa-playstation"></span>
+										<b>Triumph Score:</b> <?php print file_get_contents("http://solarian.net/triumphscorebyname.php?name=Dup-46") ?>
+									</div>
+								</div>
+							</div>
+							<div class="single-testimonial item d-flex flex-row">
+								<div class="thumb">
+									<img class="avatars" src="img/djusmarshall.png" alt="">
+								</div>
+								<div class="desc">
+									<p>
+										Marshall is our console Raid Captain.  With over 230 hours spent raiding in the Destiny series, his passion for team endgame activities is an asset to our community and his teams!
+									</p>
+									<h4 mt-30>djusmarshall, Raid Captain</h4>
+									<div class="star">
+										<span class="fab fa-playstation"></span>
+										<b>Triumph Score:</b> <?php print file_get_contents("http://solarian.net/triumphscorebyname.php?name=djusmarshall") ?>
+									</div>
+								</div>
+							</div>
+							<div class="single-testimonial item d-flex flex-row">
+								<div class="thumb">
+									<img class="avatars" src="img/evilline86.png" alt="">
+								</div>
+								<div class="desc">
+									<p>
+										Evil is our console PvE Captain.  He leads our PS4 clan into Nightfalls, strikes, dungeons, and forges &mdash; he also ensures we get the Clan Nightfall Engram each week!
+									</p>
+									<h4 mt-30>Evilline86, PvE Captain</h4>
+									<div class="star">
+										<span class="fab fa-playstation"></span>
+										<b>Triumph Score:</b> <?php print file_get_contents("http://solarian.net/triumphscorebyname.php?name=evilline86") ?>
+									</div>
+								</div>
+							</div>
+							<div class="single-testimonial item d-flex flex-row">
+								<div class="thumb">
+									<img class="avatars" src="img/ssonnie.png" alt="">
+								</div>
+								<div class="desc">
+									<p>
+										Sonnie is our console PvE Guide.  He is always ready to help players learn strikes, nightfalls, dungeons, forges, and other PvE content!
+									</p>
+									<h4 mt-30>ssonnie, PvE Guide</h4>
+									<div class="star">
+										<span class="fab fa-playstation"></span>
+										<b>Triumph Score:</b> <?php print file_get_contents("http://solarian.net/triumphscorebyname.php?name=ssonnie") ?>
+									</div>
+								</div>
+							</div>
 						</div>					
 					</div>
 				</div>	
@@ -615,54 +645,7 @@
 			<!-- End latest-blog Area -->
 			
 
-			<!-- start footer Area -->		
-			<footer class="footer-area section-gap">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-5 col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Solarian</h6>
-								<p>
-									Solarian is private social organisation.  Solarian is not affliated, sponsored, or endorsed by Bungie, Activision, or any other rights holders referenced. All trademarks are the sole property of their respective owners and used without express permission.
-								</p>
-								<p class="footer-text">
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Solarian Clan
-								</p>	
-							</div>
-						</div>
-						<div class="col-lg-5  col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-							   <!-- <h6>Newsletter</h6>
-								<p>Stay update with our latest</p>
-								<div class="" id="mc_embed_signup">
-									<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-										<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-			                            	<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-			                            	<div style="position: absolute; left: -5000px;">
-												<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-											</div>
-
-										<div class="info"></div>
-									</form>
-								</div> -->
-							</div>
-						</div>						
-						<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-							<div class="single-footer-widget">
-								<h6>Solarian on Social Media</h6>
-								<p>Follow and engage with us!</p>
-								<div class="footer-social d-flex align-items-center">
-									<a href="https://www.facebook.com/SolarianClan/"><i class="fa fa-facebook"></i></a>
-									<a href="https://twitter.com/SolarianClan"><i class="fa fa-twitter"></i></a>
-									<a href="https://solarian.net/discord/"><i class="fab fab-discord"></i></a>
-									<a href="https://www.youtube.com/channel/UCfE2P25jjIHWKjGpO7F-iNg"><i class="fa fa-youtube"></i></a>
-								</div>
-							</div>
-						</div>							
-					</div>
-				</div>
-			</footer>	
-			<!-- End footer Area -->		
+	<?php require_once("footer.php"); ?>	
 
 			<script src="js/vendor/jquery-2.2.4.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

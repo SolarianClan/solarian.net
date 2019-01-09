@@ -40,7 +40,9 @@ if (isset($_GET["username"])) {
 }
 
 
-$thisURL = "/Platform/GroupV2/".$clanId."/Members/?memberType=0";
+//$thisURL = "/Platform/GroupV2/".$clanId."/Members/?memberType=0";
+
+$thisURL = "/Platform/GroupV2/User/".$platform."/".$userId."/0/1/";
 
 	$pQueryHandle = curl_init();
     $pQueryURL = PROTOCOL.API_SERVER.$thisURL;
@@ -60,8 +62,50 @@ $thisURL = "/Platform/GroupV2/".$clanId."/Members/?memberType=0";
 
     $results = json_decode($pQueryReturn, true);
 
-	// print_r($results);
+    // print_r($results);
 
-	$roster = $results["Response"]["results"];
+	$clan = $results["Response"]["results"];
 
+	// print_r($clan);
+
+	if (!(isset($clan[0]))) {
+		
+		$thisClan["status"] = "nonmember";
+		
+	} else {
+		
+		$clan = $results["Response"]["results"][0];
+		
+		$thisClan["status"] = "member";
+		$thisClan["groupId"] = $clan["group"]["groupId"];
+		$thisClan["name"] = $clan["group"]["name"];
+
+		switch ($clan["member"]["memberType"]) {
+		
+		case 0:
+			$thisMemberType = "None";
+			break;
+		case 1:
+			$thisMemberType = "Beginner";
+			break;
+		case 2:
+			$thisMemberType = "Member";
+			break;
+		case 3:
+			$thisMemberType = "Admin";
+			break;
+		case 4:
+			$thisMemberType = "Acting Founder";
+			break;
+		case 5:
+			$thisMemberType = "Founder";
+			break;
+		default:
+			$thisMemberType = "Unknown";
+		
+	}
+		$thisClan["role"] = $thisMemberType;
+	}
+
+	print_r(json_encode($thisClan));
 ?>

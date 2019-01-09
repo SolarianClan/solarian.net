@@ -1,52 +1,6 @@
 	<!DOCTYPE html>
 	<html lang="en-uk" class="no-js">
-	<head>
-		<!-- Mobile Specific Meta -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/favicon.png">
-		<!-- Author Meta -->
-		<meta name="author" content="Solarian Clan">
-		<!-- Meta Description -->
-		<meta name="description" content="Solarian Clan, a home for casual but active Guardians">
-		<!-- Meta Keyword -->
-		<meta name="keywords" content="Solarian,Clan,Destiny,Destiny 2,rules,policies,procedures,soren42,tracon22s,kevdawg,Freak-0,NotDisliked,Bungie,PS4,PSN,PC,BattleNet,stats,Guardians,Tournament,challenges,Ghost,game,Activision,player">
-		<!-- meta character set -->
-		<meta charset="UTF-8">
-		<!-- Site Title -->
-		<title>Solarian Clan :: Rules</title>
-
-		<!-- No Caching -->
-		<meta http-equiv="Cache-Control" content="no-store" />
-		<!-- Google LD Data -->
-		<script type="application/ld+json">
-			{
-			  "@context": "http://schema.org",
-			  "@type": "Organization",
-			  "url": "https://solarian.net/",
-			  "name": "Solarian Clan",
-			  "contactPoint": {
-				"@type": "ContactPoint",
-				"email": "admin@solarian.net",
-				"contactType": "Adminstration"
-			  }
-			}
-		</script>
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
-			CSS
-			============================================= -->
-			<link rel="stylesheet" href="css/linearicons.css">
-			<link rel="stylesheet" href="css/font-awesome.min.css">
-			<link rel="stylesheet" href="css/bootstrap.css">
-			<link rel="stylesheet" href="css/magnific-popup.css">
-			<link rel="stylesheet" href="css/nice-select.css">					
-			<link rel="stylesheet" href="css/animate.min.css">
-			<link rel="stylesheet" href="css/owl.carousel.css">
-			<link rel="stylesheet" href="css/main.css">
-			<link rel="stylesheet" href="css/v4-shims.css">
-			<link rel="stylesheet" href="css/all.css">
-		</head>
+	<?php require_once("header.php"); ?>
 		<body>
 
 		  <header id="header" id="home">
@@ -110,11 +64,11 @@
 								<br clear="all" />
 								<h3 class="about-title mb-30">Community Policies</h3>
 									<!--<ol class="ordered-list">-->
-										<li><span class="rule">Profane, vulgar, and explicit language is not permitted in text chat</span><br />
-											<span class="rule-description">While we are <i>primarily</i> a clan of adults, we do have some younger community members, as well as a few members who are not fond of profanity and vulgarity.  Hence, our Discord features a censorship bot that cleans up the majority of expletives.  However, this is not intended to be a perfectly comprehensive filter, therefore members are asked to refrain from inappropriate language in the majority of the community Discord.</span><span class="exception">(The exception to this is the #nsfw channel, specifically designed to allow members over the age of 18 to say whatever they wish &mdash; provided it doesn't violate any other rule!)</span></li>
-										<li><span class="rule">Profane, vulgar, and explicit language is <i>discouraged</i> in voice chat</span><br />
-											<span class="rule-description">This rule works on the honour system and is intended to maintain decorum and civility between community members who may not know each other well.  If you're familiar with everyone in a voice chat session and know they don't mind profanity, it's certainly acceptable.  However, if you don't know someone well or are uncertain as to their views on the subject, please err on the side of caution and avoid using language you wouldn't use on a job interview.</span></li>
-										<li><span class="rule">Hate speech of any kind is not permitted in text or voice chat</span><br />
+										<li><span class="rule">Vulgar and explicit coversation is not permitted</span><br />
+											<span class="rule-description">While we are <i>primarily</i> a clan of adults, we do have some younger community members, as well as a few members who are not fond of vulgarity.  Hence, members are asked to refrain from explicit or vulgar subject matters in the majority of the community Discord.  This doesn't mean that profanity isn't permitted, just that certain taboo subjects such as sexuality don't belong in a Destiny discussion.</span><span class="exception">(The exception to this is the #nsfw channel, specifically designed to allow members over the age of 18 to say whatever they wish &mdash; provided it doesn't violate any other rule!)</span><span class="rule-description">This rule is intended to maintain decorum and civility between community members who may not know each other well.  If you're familiar with everyone in a voice chat session and know they don't mind these subjects, they're certainly acceptable.  However, if you don't know someone well or are uncertain as to their views on the topic, please err on the side of caution and avoid discussing matters you wouldn't bring up on a job interview.</span></li>
+								<!--		<li><span class="rule">Profane, vulgar, and explicit language is <i>discouraged</i> in voice chat</span><br />
+											<span class="rule-description">This rule works on the honour system and is intended to maintain decorum and civility between community members who may not know each other well.  If you're familiar with everyone in a voice chat session and know they don't mind profanity, it's certainly acceptable.  However, if you don't know someone well or are uncertain as to their views on the subject, please err on the side of caution and avoid using language you wouldn't use on a job interview.</span></li> -->
+										<li><span class="rule">Hate speech of any kind is prohibited</span><br />
 											<span class="rule-description">Solarian is an open and inclusive community.  We welcome all Guardians, regardless of race, age, gender, sexual identity, politics, religion, or other personal views.  To that end, posting or reposting hateful or discriminatoy messages, images, memes, videos, or any other content in either text or voice channels will result in a warning and immediate temporary suspension from the community.  Further violations will result in a permanent ban from the community.</span></li>
 										<li><span class="rule">Discussion and postings should stay on-topic and appropriate</span><br />
 											<span class="rule-description">Our Discord has multiple topic channels, including memes, spoilers, lore, videos, and more.  All conversations in all these channels should be related to Destiny, the Clan, the Community, surrounding technologies, or related topics.  (The notable exception is the #other-games channel, intended for the discussion of non-Destiny video games.)  Additionally, please ensure your message is posted to the appropriate channel.  For example, all bot commands and statistics should be restricted to the #stats channel, memes in #memes, Destiny videos in #destiny-videos, et cetera.  Most importantly, please keep all story spoilers in the #spoilers channel!   Any off-topic or misplaced content may be deleted without warning.</span></li>
@@ -143,54 +97,7 @@
 			</section>
 			<!-- End Generic Start -->		
 
-			<!-- start footer Area -->		
-			<footer class="footer-area section-gap">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-5 col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Solarian</h6>
-								<p>
-									Solarian is private social organisation.  Solarian is not affliated, sponsored, or endorsed by Bungie, Activision, or any other rights holders referenced. All trademarks are the sole property of their respective owners and used without express permission.
-								</p>
-								<p class="footer-text">
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Solarian Clan
-								</p>	
-							</div>
-						</div>
-						<div class="col-lg-5  col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-							   <!-- <h6>Newsletter</h6>
-								<p>Stay update with our latest</p>
-								<div class="" id="mc_embed_signup">
-									<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-										<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-			                            	<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-			                            	<div style="position: absolute; left: -5000px;">
-												<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-											</div>
-
-										<div class="info"></div>
-									</form>
-								</div> -->
-							</div>
-						</div>						
-						<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-							<div class="single-footer-widget">
-								<h6>Solarian on Social Media</h6>
-								<p>Follow and engage with us!</p>
-								<div class="footer-social d-flex align-items-center">
-									<a href="https://www.facebook.com/SolarianClan/"><i class="fa fa-facebook"></i></a>
-									<a href="https://twitter.com/SolarianClan"><i class="fa fa-twitter"></i></a>
-									<a href="https://solarian.net/discord/"><i class="fab fab-discord"></i></a>
-									<a href="https://www.youtube.com/channel/UCfE2P25jjIHWKjGpO7F-iNg"><i class="fa fa-youtube"></i></a>
-								</div>
-							</div>
-						</div>							
-					</div>
-				</div>
-			</footer>	
-			<!-- End footer Area -->	
+	<?php require_once("footer.php"); ?>	
 			
 			<script src="js/vendor/jquery-2.2.4.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
