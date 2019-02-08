@@ -34,7 +34,7 @@ if (isset($_GET["p"])) {
 }
 
 
-$thisURL = "/Platform/Destiny2/SearchDestinyPlayer/".$platform."/".urlencode($username)."/";
+$thisURL = "/Platform/Destiny2/SearchDestinyPlayer/".$platform."/".rawurlencode($username)."/";
 
 	$pQueryHandle = curl_init();
     $pQueryURL = PROTOCOL.API_SERVER.$thisURL;

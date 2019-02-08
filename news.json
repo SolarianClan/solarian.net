@@ -1,0 +1,51 @@
+{
+	"0": {
+		"date": "2018-11-28",
+		"title": "PvP Tournament, <I>Outlaws Rising</I>",
+		"URL": "https://www.youtube.com/watch?v=aOe53oSUoc0",
+		"description": "Announcing the latest Community PvP Tournament, Outlaws Rising! This individual points-based tournament features a progressive scoring system with a catch-up mechanic. Weekly Rumble matches are being held under loadout rules that vary from week to week.",
+		"active": "1"
+	},
+	"1": {
+		"date": "2018-12-03",
+		"title": "End-of-Season Update Video",
+		"URL": "https://www.youtube.com/watch?v=hfG_Gs7ObLI&t=47s",
+		"description": "As Season Four draws to a close, we've published the clan end-of-season update & leaderboards video! This season, we've adopted a fresh look that should be immediately recognisable to fans of vintage gaming.",
+		"active": "0"
+	},
+	"2": {
+		"date": "2018-12-27",
+		"title": "Captain &amp; Guide Roles",
+		"URL": "https://www.youtube.com/watch?v=5oesvWSmaWU",
+		"description": "Introducting new clan leadership roles, Captains & Guides. Captains coordinate activities & ensure we earn weekly rewards, while Guides teach community members strategies & tactics for high-skill activities",
+		"active": "1"
+	},
+	"3": {
+		"date": "2018-12-30",
+		"title": "Rules Enforcement",
+		"URL": "https://solarian.net/rules.php",
+		"description": "In an effort to improve user activity and community engagement, we are reviewing membership rolls and contacting anyone not meeting the user requirements",
+		"active": "1"
+	},
+	"4": {
+		"date": "2018-12-31",
+		"title": "Recruitment Initative",
+		"URL": "https://solarian.net/recruiting.php",
+		"description": "As we open 2019, our clan will be doing an major recruitment push to bring more active Guardians into the community across both platforms",
+		"active": "1"
+	},
+	"5": {
+		"date": "2019-01-01",
+		"title": "Website Redesign",
+		"URL": "https://solarian.net/",
+		"description": "Our clan's website at solarian.net has been redesigned from the ground up to reflect the recent changes, updates, and expansion of our clan",
+		"active": "1"
+	},
+	"6": {
+		"date": "2019-01-22",
+		"title": "Successful End to Recruiting",
+		"URL": "https://solarian.net/recruiting.php",
+		"description": "Our three week recruiting campaign has drawn to a close, with great success.  We brought in over 115 new players across all three platforms!",
+		"active": "1"
+	}
+}

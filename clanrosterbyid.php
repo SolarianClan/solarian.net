@@ -81,7 +81,8 @@ foreach ($roster as $member=>$attribute) {
 	
 	
 	$thisUser = $roster[$member]["destinyUserInfo"]["membershipId"];
-	$userData[$thisUser]["platform"] = $roster[$member]["destinyUserInfo"]["membershipType"];
+	$userData[$thisUser]["userId"] = (string) $roster[$member]["destinyUserInfo"]["membershipId"];
+	$userData[$thisUser]["platform"] = (string) $roster[$member]["destinyUserInfo"]["membershipType"];
 	$userData[$thisUser]["username"] = $roster[$member]["destinyUserInfo"]["displayName"];
 	$userData[$thisUser]["isOnline"] = $isOnline;
 	$userData[$thisUser]["memberType"] = $thisMemberType;

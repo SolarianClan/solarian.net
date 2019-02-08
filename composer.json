@@ -1,0 +1,10 @@
+{
+    "require": {
+        "salsify/json-streaming-parser": "^8.0",
+        "php-coveralls/php-coveralls": "^2.1",
+        "phpunit/phpunit": "^7.5",
+        "ext-json": "^1.5",
+        "netresearch/jsonmapper": "^1.4",
+        "php-curl-class/php-curl-class": "^8.5"
+    }
+}

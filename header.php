@@ -1,4 +1,13 @@
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132047846-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-132047846-1');
+		</script>
 		<?php
 			switch (basename($_SERVER['PHP_SELF'])) {
 				case "index.php":
@@ -25,6 +34,10 @@
 					$pageTitle = "Player Profile";
 					$pageKeywords = "";
 					break;
+				case "discord.php":
+					$pageTitle = "Using Our Clan Discord";
+					$pageKeywords = ",discord,bots,Charlemagne,Rahool,Solaria";
+					break;
 				case "outlaws-rising.php":
 					$pageTitle = "Outlaws Rising";
 					$pageKeywords = ",Outlaws Rising";
@@ -32,6 +45,10 @@
 				case "leaderboards.php":
 					$pageTitle = "Leaderboards";
 					$pageKeywords = ",rankings,stats,leaderboards";
+					break;
+				case "challenge.php":
+					$pageTitle = "Challenges";
+					$pageKeywords = ",challenge,challenges,pve,strikes";
 					break;
 				case "404.php":
 					$pageTitle = "Not Found";

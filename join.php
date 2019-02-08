@@ -1,34 +1,8 @@
-<!DOCTYPE html>
-	<html lang="en-uk" class="no-js">
-	<?php require_once("header.php"); ?>
+<?php require_once('services/solarian.php'); ?><!DOCTYPE html>
+	<html lang="en-uk" class="no-js" prefix="og: http://ogp.me/ns#">
+	<?php pageHeader("meta.json"); ?>
 		<body>
-
-		  <header id="header" id="home">
-		    <div class="container">
-		    	<div class="row align-items-center justify-content-between d-flex">
-			      <div id="logo">
-			        <a href="/"><img src="img/logo.png" alt="Solarian" title="" /></a>
-			      </div>
-			      <nav id="nav-menu-container">
-			        <ul class="nav-menu">
-				      <li class="menu-active"><a href="/">Home</a></li>
-				      <li><a href="/#about">About Us</a></li>
-				      <li><a href="/#news">News</a></li>
-				      <li><a href="/#updates">Updates</a></li>							
-				      <li><a href="/#admins">Admins</a></li>
-				      <li class="menu-has-children"><a href="">Pages</a>
-				      	<ul>
-				      		<li><a href="rules.php">Policies &amp; Procedures</a></li>
-				        	<li><a href="leaderboards.php">Leaderboards</a></li>
-							<li><a href="tournaments.php">Tournaments</a></li>
-				      	</ul>
-				      </li>
-				      <li><a class="ticker-btn" href="join.php">Join Our Clan!</a></li>				          
-				    </ul>
-			      </nav><!-- #nav-menu-container -->		    		
-		    	</div>
-		    </div>
-		  </header><!-- #header -->
+			 <?php menubar(); ?>
 		  <!-- start banner Area -->
 			<section class="banner-area relative" id="home">
 				<div class="overlay overlay-bg"></div>	
@@ -123,7 +97,7 @@
 										</div>
 									</div>
 									<div class="switch-wrap d-flex justify-content-between">
-										<p>I certify that I have joined <a href="https://discord.gg/APGCjeg">the clan Discord</a> and will be an active contributor to the community.</p>
+										<p>I certify that I have joined <a href="https://discord.gg/fznrvW2">the clan Discord</a> and will be an active contributor to the community.</p>
 										<div class="confirm-checkbox">
 											<input type="checkbox" id="discord-agree" name="discord-agree" class="blue" onClick="displayJoinLink()">
 											<label for="discord-agree" class="blue"></label>
@@ -153,24 +127,9 @@
 		</div>
 			<!-- End Generic Start -->		
 
-	<?php require_once("footer.php"); ?>	
-			
-			<script src="js/vendor/jquery-2.2.4.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="js/vendor/bootstrap.min.js"></script>			
-			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-  			<script src="js/easing.min.js"></script>			
-			<script src="js/hoverIntent.js"></script>
-			<script src="js/superfish.min.js"></script>	
-			<script src="js/jquery.ajaxchimp.min.js"></script>
-			<script src="js/jquery.magnific-popup.min.js"></script>	
-			<script src="js/owl.carousel.min.js"></script>			
-			<script src="js/jquery.sticky.js"></script>
-			<script src="js/jquery.nice-select.min.js"></script>			
-			<script src="js/parallax.min.js"></script>	
-			<script src="js/mail-script.js"></script>				
-			<script src="js/main.js"></script>	
-		
+			<?php pageFooter(); ?>	
+			<?php javaScripts(); ?>
+
 			<script language="javascript">
 			function displayJoinLink() {
   				// Get the checkboxes

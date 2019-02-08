@@ -837,12 +837,19 @@ h1, h2, h3, h4, h5, h6 {
 	border-left: 2px solid #3bacf0
 }
 .progress-table-wrap {
-	overflow-x: scroll
+	/*overflow-x: scroll*/
+	overflow-x: hidden;
+	text-align: center;
+	align-content: center;
+	align-items: center;
 }
 .progress-table {
 	background: #f9f9ff;
 	padding: 15px 0px 30px 0px;
-	min-width: 800px
+	min-width: 500px;
+	text-align: center;
+	align-content: center;
+	align-items: center;
 }
 .progress-table .serial {
 	width: 11.83%;
@@ -852,11 +859,11 @@ h1, h2, h3, h4, h5, h6 {
 	width: 28.07%
 }
 .progress-table .visit {
-	width: 19.74%
+	width: 19.74%;
 }
 .progress-table .percentage {
 	width: 40.36%;
-	padding-right: 50px
+	padding-right: 50px;
 }
 .progress-table .table-head {
 	display: flex
@@ -866,6 +873,13 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 40px;
 	text-transform: uppercase;
 	font-weight: 500
+}
+.progress-table .table-head-lower, .progress-table .table-head-lower .serial, .progress-table .table-head-lower .country, .progress-table .table-head-lower .visit, .progress-table .table-head-lower .percentage {
+	display: flex;
+	color: #222;
+	line-height: 40px;
+	font-weight: 500;
+	align-items: center;
 }
 .progress-table .table-row {
 	padding: 15px 0;
@@ -1909,6 +1923,39 @@ body.mobile-nav-active #mobile-nav-toggle {
     height: 100%; 
     z-index: 2;
 }
+.twas-area {
+        background: url("../img/Mayhem_Header_3.jpg") center;
+        background-size: cover
+}
+
+.twas-area .overlay-bg {	
+	background-color: rgba(142,59,240,0.5);
+	overflow: hidden;
+    height: 100%; 
+    z-index: 2;
+}
+.twas1-area {
+        background: url("../img/Mayhem_Header_3.jpg") center;
+        background-size: cover
+}
+
+.twas1-area .overlay-bg {	
+	background-color: rgba(142,59,240,0.5);
+	overflow: hidden;
+    height: 100%; 
+    z-index: 2;
+}
+.todo-area {
+        background: url("../img/banner_crucible_1.jpg") center;
+        background-size: cover
+}
+
+.todo-area .overlay-bg {	
+	background-color: rgba(142,59,240,0.5);
+	overflow: hidden;
+    height: 100%; 
+    z-index: 2;
+}
 .banner-area2 {
         background: url(../img/header-bg.jpg) center;
         background-size: cover
@@ -2709,6 +2756,9 @@ font-weight:300
 .bng-vex:before {
 	content: "\f10a";
 }
+.bng-loading:before {
+	content: "\f114";
+}
 
 
 
@@ -2738,15 +2788,23 @@ font-weight:300
 	font-size: smaller;
 }
 .wtfix-banner {
-	padding: 14px 0;
+	vertical-align: middle;
+	padding: 0;
 	background: rgba(0,0,0,1);
 	color: rgba(255,255,255,1);
 }
 .wtfix-banner .inner {
-	padding: 14px 0;
+	font-family: 'Roboto', sans-serif;
+	vertical-align: middle;
+	padding: 0;
 	background: rgba(0,0,0,1);
 	color: rgba(255,255,255,1);
-	width: 75% content-box;
+	width: 90% content-box;
 	text-align: left;
-	height: 50px;
+	height: 75px;
+}
+.wtfix-banner .inner a {
+	font-family: 'Roboto', sans-serif;
+	color: rgba(255,255,255,1);
+	
 }
