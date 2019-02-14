@@ -44,8 +44,8 @@
 	"7": {
 		"filename": "outlaws-rising.php",
 		"pageTitle": "Outlaws Rising",
-		"pageKeywords": ",Outlaws Rising",
-		"pageDescription": "Solarian Clan 2019 PvP Tournament, Outlaws Rising"		
+		"pageKeywords": ",Outlaws Rising,tourament,Winter,2018,Season of the Outlaw",
+		"pageDescription": "Solarian Clan's Season of the Outlaw PvP Tournament, Outlaws Rising"		
 	},	
 	"8": {
 		"filename": "leaderboards.php",
@@ -76,5 +76,11 @@
 		"pageTitle": "This Week at Solarian",
 		"pageKeywords": ",news,updates,latest,reports,The Week at Solarian,TWAS",
 		"pageDescription": "This Week at Solarian"		
+	},
+	"13": {
+		"filename": "champions-rose.php",
+		"pageTitle": "Champion's Rose",
+		"pageKeywords": ",Champion's Rose,tourament,Winter,2019,Season of the Drifter",
+		"pageDescription": "Solarian Clan's Season of the Drifter PvP Tournament"		
 	}
 }

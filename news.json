@@ -4,7 +4,7 @@
 		"title": "PvP Tournament, <I>Outlaws Rising</I>",
 		"URL": "https://www.youtube.com/watch?v=aOe53oSUoc0",
 		"description": "Announcing the latest Community PvP Tournament, Outlaws Rising! This individual points-based tournament features a progressive scoring system with a catch-up mechanic. Weekly Rumble matches are being held under loadout rules that vary from week to week.",
-		"active": "1"
+		"active": "0"
 	},
 	"1": {
 		"date": "2018-12-03",
@@ -46,6 +46,13 @@
 		"title": "Successful End to Recruiting",
 		"URL": "https://solarian.net/recruiting.php",
 		"description": "Our three week recruiting campaign has drawn to a close, with great success.  We brought in over 115 new players across all three platforms!",
+		"active": "1"
+	},
+	"7": {
+		"date": "2019-02-12",
+		"title": "Announcing Champion's Rose Tournament",
+		"URL": "https://www.youtube.com/watch?v=2KKfqH2gilU",
+		"description": "Solarian Clan is proud to announce <i>Champion's Rose</i>, our first-ever cross-platform Destiny 2 PvP Tournament!  This tournament is scheduled to coincide with the Season of the Drifter.",
 		"active": "1"
 	}
 }

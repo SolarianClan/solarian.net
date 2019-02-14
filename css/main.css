@@ -1956,6 +1956,17 @@ body.mobile-nav-active #mobile-nav-toggle {
     height: 100%; 
     z-index: 2;
 }
+.rose-area {
+        background: url("../img/champions-rose-header.jpg") center;
+        background-size: cover
+}
+
+.rose-area .overlay-bg {	
+	background-color: rgba(142,59,240,0.5);
+	overflow: hidden;
+    height: 100%; 
+    z-index: 2;
+}
 .banner-area2 {
         background: url(../img/header-bg.jpg) center;
         background-size: cover
