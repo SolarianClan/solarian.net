@@ -23,9 +23,9 @@ define("APPLICATION_NAME", "Solarian-Clan");
 define("USER_AGENT", APPLICATION_NAME." ".VERSION_NUMBER."(".RELEASE_NUMBER.")");
 
 
-# define("CLIENT_ID", "25146");
-# define("API_KEY", "4b586d1833ee491c8b4f6ede97afa9f1");
-# define("SECRET", "c-lNmHuN8kOkIiVtdeg5SD.4H9880gPdIVLbb.g51nE");
+# define("CLIENT_ID", "");
+# define("API_KEY", "");
+# define("SECRET", "");
 
 if (is_readable(APP_DATA_FILE)) {
 
