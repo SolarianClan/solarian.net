@@ -1,6 +1,6 @@
 	<?php require_once('services/solarian.php'); ?><!DOCTYPE html>
 	<html lang="en-uk" class="no-js" prefix="og: http://ogp.me/ns#">
-		<?php pageHeader("meta.json"); ?>
+		<?php pageHeader(DATA_PATH."meta.json"); ?>
 		<body>
 			 <?php menubar(); ?>
 			<!-- start banner Area -->
@@ -144,7 +144,7 @@
 					</div>					
 					<div class="row">
 						
-							<?php newsBlock('news.json'); ?>														
+							<?php newsBlock(DATA_PATH.'news.json'); ?>														
 												
 					</div>
 				</div>	
@@ -331,7 +331,7 @@
 					</div>						
 					<div class="row">
 						<div class="active-testimonial">
-					<?php leadershipBlock('leadership.json'); ?>
+					<?php leadershipBlock(DATA_PATH.'leadership.json'); ?>
 						</div>
 					</div>
 				</div>	

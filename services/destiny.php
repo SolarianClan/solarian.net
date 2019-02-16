@@ -1,9 +1,11 @@
 <?php
 
+define("DATA_PATH", "./data/");
+
 # define whether the application configuration is encoded
 define("CFG_ENCODED", TRUE);
 # define location of file containing application identifiers
-define("APP_DATA_FILE", "./appdata.cfg");
+define("APP_DATA_FILE", DATA_PATH."appdata.cfg");
 
 # define base protocol used to query API
 define("PROTOCOL", "https://");
@@ -21,10 +23,61 @@ define("APPLICATION_NAME", "Solarian-Clan");
 define("USER_AGENT", APPLICATION_NAME." ".VERSION_NUMBER."(".RELEASE_NUMBER.")");
 
 
-define("CLIENT_ID", "25146");
-define("API_KEY", "4b586d1833ee491c8b4f6ede97afa9f1");
-define("SECRET", "c-lNmHuN8kOkIiVtdeg5SD.4H9880gPdIVLbb.g51nE");
+# define("CLIENT_ID", "25146");
+# define("API_KEY", "4b586d1833ee491c8b4f6ede97afa9f1");
+# define("SECRET", "c-lNmHuN8kOkIiVtdeg5SD.4H9880gPdIVLbb.g51nE");
 
+if (is_readable(APP_DATA_FILE)) {
+
+	$cfgfp = @fopen(APP_DATA_FILE, "r");
+
+	# Import, decode, and define CLIENT_ID
+	if ($pCLIENT_ID=fgets($cfgfp)) {
+		if (CFG_ENCODED) {
+			define("CLIENT_ID", trim(base64_decode($pCLIENT_ID)));
+		} else {
+			define("CLIENT_ID", trim($pCLIENT_ID));
+		}
+		unset($pCLIENT_ID);
+	} else {
+		error_exit("CLIENT_ID not found");
+	}
+
+	# Import, decode, and define API_KEY
+	if ($pAPI_KEY=fgets($cfgfp)) {
+		if (CFG_ENCODED) {
+			define("API_KEY", trim(base64_decode($pAPI_KEY)));
+		} else {
+			define("API_KEY", trim($pAPI_KEY));
+		}
+		unset($pAPI_KEY);
+	} else {
+		error_exit("API_KEY not found");
+	}
+
+	# Import, decode, and define SECRET
+	if ($pSECRET=fgets($cfgfp)) {
+		if (CFG_ENCODED) {
+			define("SECRET", trim(base64_decode($pSECRET)));
+		} else {
+			define("SECRET", trim($pSECRET));
+		}
+		unset($pSECRET);
+	} else {
+		error_exit("SECRET not found");
+	}
+
+	fclose($cfgfp);
+	unset($cfgfp);
+} else {
+	error_exit("Application data file not found");
+}
+
+function error_exit( $error_code = "undefined" ) {
+	print_r(error_get_last().":".$error_code."\n");
+	exit(1);
+
+}
 
 
 function triumphScoreByName($username = "soren42", $platform = "-1") {

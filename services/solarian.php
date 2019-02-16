@@ -2,7 +2,7 @@
 
 require_once("services/destiny.php");
 
-function leadershipBlock($leadershipJSONFile = 'leadership.json') {
+function leadershipBlock($leadershipJSONFile = DATA_PATH.'leadership.json') {
 
         $leaders = json_decode(file_get_contents($leadershipJSONFile), TRUE);
 
@@ -20,7 +20,8 @@ function leadershipBlock($leadershipJSONFile = 'leadership.json') {
 			foreach($leaders[$leader]["platform"] as $platforms => $platform) {
 					print_r('			<span class="fab fa-'.$platform.'"></span>'.PHP_EOL);
 				}
-			print_r('		<b>Triumph Score:</b> '.triumphScoreByName(rawurldecode($leaders[$leader]["username"])).PHP_EOL);
+			print_r('		<b>Triumph Score:</b> '.$leaders[$leader]["triumph"].PHP_EOL);
+//			print_r('		<b>Triumph Score:</b> '.triumphScoreByName(rawurldecode($leaders[$leader]["username"])).PHP_EOL);
 //			print file_get_contents("http://solarian.net/triumphscorebyname.php?name=".rawurlencode($leaders[$leader]["username"]));
 			print_r('		</div>'.PHP_EOL);
 			print_r('	</div>'.PHP_EOL);
@@ -28,7 +29,7 @@ function leadershipBlock($leadershipJSONFile = 'leadership.json') {
 			}
 		}
 
-function newsBlock($newsJSONFile = 'news.json') {
+function newsBlock($newsJSONFile = DATA_PATH.'news.json') {
 	
 		$news = json_decode(file_get_contents($newsJSONFile), TRUE);
 		$totalArticles = 0;
@@ -66,7 +67,7 @@ function newsBlock($newsJSONFile = 'news.json') {
 		print_r('				</div>'.PHP_EOL);
 }
  
-function pageHeader($metaJSONFile = 'meta.json') {
+function pageHeader($metaJSONFile = DATA_PATH.'meta.json') {
 	
 	 $metaTags = json_decode(file_get_contents($metaJSONFile), TRUE);
 	
