@@ -1,2 +1,2 @@
-# site-redesign
-2019 Website Redesign
+# Solarian Clan Website
+solarian.net main development and maintenance branch
