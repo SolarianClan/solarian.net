@@ -1,6 +1,22 @@
 <?php
-
-require_once("services/destiny.php");
+// Initialise PHP session services (used for Bungie API Auth management)
+session_start();
+// define installation path for all root directory of data, services, and more.
+defined('INSTALLATION_PATH') or define("INSTALLATION_PATH", '/var/www/solarian.net/');
+// define path to data files if not already defined
+defined('DATA_PATH') or define("DATA_PATH", INSTALLATION_PATH."data/");
+// define path to library files if not already defined
+defined('SERVICE_PATH') or define('SERVICE_PATH', INSTALLATION_PATH."services/");
+// Add library for Destiny API services
+require_once(SERVICE_PATH. "destiny.php");
+// Add library for API caching services
+require_once(SERVICE_PATH. "cache.php");
+// Add library for WTFIX Xûr location services
+require_once(SERVICE_PATH. "xur.php");
+// Add library for Solarian Clan Admin Dashboard services
+require_once(SERVICE_PATH. "dashboard.php");
+// Add library for banner building services
+require_once(SERVICE_PATH. "banner.php");
 
 function leadershipBlock($leadershipJSONFile = DATA_PATH.'leadership.json') {
 
@@ -27,7 +43,7 @@ function leadershipBlock($leadershipJSONFile = DATA_PATH.'leadership.json') {
 			print_r('	</div>'.PHP_EOL);
 			print_r('</div>'.PHP_EOL);
 			}
-		}
+} // end function leadershipBlock
 
 function newsBlock($newsJSONFile = DATA_PATH.'news.json') {
 	
@@ -65,7 +81,7 @@ function newsBlock($newsJSONFile = DATA_PATH.'news.json') {
 			}
 		}
 		print_r('				</div>'.PHP_EOL);
-}
+} // end function newsBlock
  
 function pageHeader($metaJSONFile = DATA_PATH.'meta.json') {
 	
@@ -82,6 +98,23 @@ function pageHeader($metaJSONFile = DATA_PATH.'meta.json') {
 
 		  gtag('config', 'UA-132047846-1');
 		</script>
+		<!-- Facebook Pixel Code -->
+		<script>
+		  !function(f,b,e,v,n,t,s)
+		  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		  n.queue=[];t=b.createElement(e);t.async=!0;
+		  t.src=v;s=b.getElementsByTagName(e)[0];
+		  s.parentNode.insertBefore(t,s)}(window, document,'script',
+		  'https://connect.facebook.net/en_US/fbevents.js');
+		  fbq('init', '437670443666434');
+		  fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+		  src="https://www.facebook.com/tr?id=437670443666434&ev=PageView&noscript=1"
+		/></noscript>
+		<!-- End Facebook Pixel Code -->
 EOT;
 
 		foreach ($metaTags as $page => $metaField) {
@@ -90,6 +123,7 @@ EOT;
 				$pageTitle 	     = $metaTags[$page]["pageTitle"];
 				$pageKeywords    = $metaTags[$page]["pageKeywords"];
 				$pageDescription = $metaTags[$page]["pageDescription"];
+				$filename		 = $metaTags[$page]["filename"];
 			}
 
 		}
@@ -97,6 +131,8 @@ EOT;
 		if (!(isset($pageTitle))) {
 					$pageTitle = ucfirst(strstr(basename($_SERVER['PHP_SELF']),'.',true));
 					$pageKeywords = "";
+					$pageDescription = "";
+					$filename = basename($_SERVER['PHP_SELF']);
 			};
 	
 	echo <<<EOT
@@ -109,7 +145,7 @@ EOT;
 		<!-- Meta Description -->
 		<meta name="description" content="{$pageDescription}">
 		<!-- Meta Keyword -->
-		<meta name="keywords" content="Solarian,Clan,Destiny,Destiny 2,soren42,tracon22s,kevdawg,Freak-0-,NotDisliked,Bungie,PS4,PSN,PC,BattleNet,stats,Guardians,Tournament,challenges,Ghost,game,Activision,player{$pageKeywords}">
+		<meta name="keywords" content="Solarian,Clan,Destiny,Destiny 2,soren42,tracon22s,kevdawg,Freak-0-,NotDisliked,Bungie,PS4,PSN,PC,Xbox,One,XB1,XB,Microsoft,Google,Stadia,BattleNet,stats,Guardians,Tournament,challenges,Ghost,game,Activision,player{$pageKeywords}">
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
@@ -141,6 +177,7 @@ EOT;
 			  }
 			}
 		</script>
+		<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
 			<!--
 			CSS
@@ -156,11 +193,13 @@ EOT;
 			<link rel="stylesheet" href="css/v4-shims.css">
 			<link rel="stylesheet" href="css/all.css">
 			<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&effect=anaglyph" rel="stylesheet">
+			<link rel="stylesheet" href="css/destiny-font.css">
+			<link rel="stylesheet" href="css/countdowncube.css">
 
 	</head>
 EOT;
 	
-}
+} // end function pageHeader
 
 function pageFooter() {
 	
@@ -171,10 +210,16 @@ function pageFooter() {
 					<div class="row">
 						<div class="col-lg-5 col-md-6 col-sm-6">
 							<div class="single-footer-widget">
-								<h6>Solarian</h6>
+								<!-- <h6>Solarian</h6> -->
 								<p>
-									Solarian is private social organisation.  Solarian is not affliated, sponsored, or endorsed by Bungie, Activision, or any other rights holders referenced. All trademarks are the sole property of their respective owners and used without express permission.
+									Solarian is private social organisation.  Solarian is not affliated, sponsored, or endorsed by Bungie, Activision, or any other rights holders referenced. All trademarks are the sole property of their respective owners and used without express permission.<br>
+									© Bungie, Inc. All rights reserved. Destiny, the Destiny Logo, Bungie and the Bungie logo are among the trademarks of Bungie, Inc.
 								</p>
+								
+								<p class="footer-text">
+								<a href="/terms.php">Terms of Service</a> | <a href="/privacy.php">Privacy Policy</a>
+								</p>
+								
 								<p class="footer-text">
 								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Solarian Clan
 								</p>	
@@ -215,7 +260,7 @@ function pageFooter() {
 			<!-- End footer Area -->
 EOT;
 
-}
+} // end function pageFooter
 
 function javaScripts () {
 	
@@ -234,10 +279,15 @@ function javaScripts () {
 			<script src="js/jquery.nice-select.min.js"></script>			
 			<script src="js/parallax.min.js"></script>		
 			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>	
+			<script src="js/main.js"></script>
+			<script src="js/countdowncube.js"></script>
+			<script src="js/jstz.js"></script>
+			<script src="js/moment.js"></script>
+			<script src="js/moment-timezone.js"></script>
+			
 EOT;
 	
-}
+} // end function javaScripts
 
 function menubar() {
 	
@@ -258,11 +308,15 @@ function menubar() {
 				      <li class="menu-has-children"><a href="">Pages</a>
 				      	<ul>
 				      		<li><a href="rules.php">Policies &amp; Procedures</a></li>
-							<li><a href="discord.php">Using Our Clan Discord</a></li>
+							<!--<li><a href="discord.php">Using Our Clan Discord</a></li>-->
 				        	<li><a href="leaderboards.php">Leaderboards</a></li>
+							<li><a href="links.php">Links</a></li>
 							<li><a href="tournaments.php">Tournaments</a></li>
 						    <li><a href="challenge.php">Challenges</a></li>
-
+							<li><a href="podcast.php">Podcast</a></li>
+							<li><a href="guide.php">New Member's Guide</a></li>
+							<li><a href="shop.php">Merchandise</a></li>
+							
 				      	</ul>
 				      </li>
 				      <li><a class="ticker-btn" href="join.php">Join Our Clan!</a></li>				          
@@ -273,6 +327,14 @@ function menubar() {
 		  </header><!-- #header -->
 EOT;
 	
-}
+} // end function menubar
+
+function displayStatus($statusDataFile = DATA_PATH.'status.json') {
+
+	$statusArray = json_decode(file_get_contents($statusDataFile), TRUE);
+
+	echo($statusArray[0]);
+	
+} // end function displayStatus
 
 ?>
