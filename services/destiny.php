@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Library destiny.php
+ * Bungie's Destiny API functions for SolariaCore Libraries
+ *
+ */
 # define installation path for all root directory of data, services, and more.
 defined('INSTALLATION_PATH') or define("INSTALLATION_PATH", '/var/www/solarian.net/');
 # define path to data files if not already defined

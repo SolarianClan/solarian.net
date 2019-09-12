@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Library tournament.php
+ * Tournament management functions for SolariaCore Libraries
+ *
+ * Requires: destiny.php
+ *
+ */
+
 # define installation path for all root directory of data, services, and more.
 defined('INSTALLATION_PATH') or define("INSTALLATION_PATH", '/var/www/solarian.net/');
 # define path to data files if not already defined
