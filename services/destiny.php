@@ -34,13 +34,13 @@ define("APPLICATION_NAME", "Solaria");
 # define Bungie Application Name
 define("BUNGIE_APP_NAME", "Solarian");
 # define primary website for Bungie apllication
-define("PRIMARY_SITE", "www.solarian.net");
+define("PRIMARY_SITE", "solarian.net");
 # define primary contact for Bungie application
 define("CONTACT_ADDRESS", "admin@solarian.net");
 # define authentication redirect URL for Bungie Application
-define("BUNGIE_APP_AUTH_REDIRECT_URL", "https://solarian.net/auth.php");
+define("BUNGIE_APP_AUTH_REDIRECT_URL", PROTOCOL.PRIMARY_SITE."/auth.php");
 # define the manifest directory
-define("MANIFEST_DIRECTORY", "/home/solarian/html/destiny/manifest/");
+define("MANIFEST_DIRECTORY", INSTALLATION_PATH."manifest/");
 # define default manifest language
 define("MANIFEST_LANGUAGE", "en");
 # define default username for API functions (to prevent no input errors)
