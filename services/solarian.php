@@ -1,4 +1,9 @@
 <?php
+/**
+ * Library solarian.php
+ * Primary functions for Solarian Websites via SolariaCore Libraries
+ *
+ */
 // Initialise PHP session services (used for Bungie API Auth management)
 session_start();
 // define installation path for all root directory of data, services, and more.
@@ -17,6 +22,9 @@ require_once(SERVICE_PATH. "xur.php");
 require_once(SERVICE_PATH. "dashboard.php");
 // Add library for banner building services
 require_once(SERVICE_PATH. "banner.php");
+
+use function multiclanRoster as solarianRoster;
+use function multiclanRosterByJoinDate as solarianRosterByJoinDate;
 
 function leadershipBlock($leadershipJSONFile = DATA_PATH.'leadership.json') {
 
@@ -336,5 +344,7 @@ function displayStatus($statusDataFile = DATA_PATH.'status.json') {
 	echo($statusArray[0]);
 	
 } // end function displayStatus
+
+
 
 ?>

@@ -37,6 +37,8 @@ define("BUNGIE_APP_NAME", "Solarian");
 define("PRIMARY_SITE", "www.solarian.net");
 # define primary contact for Bungie application
 define("CONTACT_ADDRESS", "admin@solarian.net");
+# define authentication redirect URL for Bungie Application
+define("BUNGIE_APP_AUTH_REDIRECT_URL", "https://solarian.net/auth.php");
 # define the manifest directory
 define("MANIFEST_DIRECTORY", "/home/solarian/html/destiny/manifest/");
 # define default manifest language
@@ -234,7 +236,7 @@ function isAuthSessionSet() {
 function getNewAuthorisation() {
 	
 	$_SESSION['solReferralURL'] = ORIGIN_HEADER;
-	header('Location: https://solarian.net/auth.php');
+	header('Location: '.BUNGIE_APP_AUTH_REDIRECT_URL);
 	
 } // end function getNewAuthorisation()
 
@@ -758,9 +760,9 @@ function clanRosterById($clanId = TEST_CLAN_ID) {
 	
 } // end function clanRosterById()
 
-function multiclanRoster() {
+function multiclanRoster($clanDataFile = CLAN_DATA_FILE) {
 	
-	$clanJSON = file_get_contents(CLAN_DATA_FILE);
+	$clanJSON = file_get_contents($clanDataFile);
 	$clanList = json_decode($clanJSON, TRUE);
 	
 	$i = 0;
@@ -780,8 +782,6 @@ function multiclanRoster() {
 	
 } // end function multiclanRoster()
 
-use function multiclanRoster as solarianRoster;
-
 function joinDateCompare($a, $b) {
 	$t1 = strtotime($a['joinDate']);
 	$t2 = strtotime($b['joinDate']);
@@ -789,19 +789,19 @@ function joinDateCompare($a, $b) {
 } // end function joinDateCompare()
 
 
-function solarianRosterByJoinDate() {
+function multiclanRosterByJoinDate() {
 
-$clanList = solarianRoster();
+$clanList = multiclanRoster();
 
 usort($clanList, 'joinDateCompare');
 	
 return($clanList);
 
-} // end function solarianRosterByJoinDate()
+} // end function multiclanRosterByJoinDate()
 
 function clanBeginners() {
 	
-	$fullRoster = solarianRosterByJoinDate();
+	$fullRoster = multiclanRosterByJoinDate();
 	$beginnerArray = array();
 	
 	$i = 0;
@@ -821,7 +821,7 @@ function clanBeginners() {
 
 function clanFullMembers() {
 	
-	$fullRoster = solarianRosterByJoinDate();
+	$fullRoster = multiclanRosterByJoinDate();
 	$memberArray = array();
 	
 	$i = 0;
@@ -841,7 +841,7 @@ function clanFullMembers() {
 
 function clanOnline() {
 		
-	$fullRoster = solarianRosterByJoinDate();
+	$fullRoster = multiclanRosterByJoinDate();
 	$onlineArray = array();
 	
 	$i = 0;
