@@ -1,7 +1,12 @@
 {
-	"pc": {
+	"pcna": {
 		"id": "3241873",
-		"name": "Solarian PC Company",
+		"name": "Solarian PC Company [NA]",
+		"platform": "pc"
+		},
+	"pceu": {
+		"id": "3726168",
+		"name": "Solarian PC Company [EU]",
 		"platform": "pc"
 		},
 	"ps": {
@@ -13,5 +18,50 @@
 		"id": "2112472",
 		"name": "Solarian X",
 		"platform": "xbox"
-		}
+		},
+	"blue": {
+		"id": "3734148",
+		"name": "Solarian 二 [PS4]",
+		"platform": "ps"
+		},
+	"red": {
+		"id": "3735224",
+		"name": "Solarian 二 [PC/NA]",
+		"platform": "pc"
+		},
+	"solx": {
+		"id": "1623415",
+		"name": "Solarian Exiles",
+		"platform": "ps"
+		},
+	"xb2": {
+		"id": "3769381",
+		"name": "Solarian X 二",
+		"platform": "xbox"
+		},
+	"pcna3": {
+		"id": "3775210",
+		"name": "Solarian 三 [PC/NA]",
+		"platform": "pc"
+		},
+	"pceu2": {
+		"id": "3795248",
+		"name": "Solarian 二 [PC/EU]",
+		"platform": "pc"
+		},
+	"ps3": {
+		"id": "3799655",
+		"name": "Solarian 三 [PS4]",
+		"platform": "ps"
+		},
+	"xb3": {
+		"id": "3800593",
+		"name": "Solarian X 三",
+		"platform": "xbox"
+		},
+	"solid": {
+		"id": "1672226",
+		"name": "The Solid Solarians",
+		"platform": "ps"
+	}
 }

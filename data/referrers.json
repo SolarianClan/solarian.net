@@ -1,0 +1,44 @@
+{
+	"0":{
+		"id": "000",
+		"URL": "https://wtfix.xyz/",
+		"Name": "Where the Fuck is Xûr",
+		"Description": "A source for information on Xûr and his fellow vendors across the entire solar system"
+	},
+	"1":{
+		"id": "001",
+		"URL": "https://braytech.org/",
+		"Name": "Braytech",
+		"Description": "Destiny 2 character progression, clans, triumphs, collections, and more"
+	},
+	"2":{
+		"id": "002",
+		"URL": "https://beta.destinyitemmanager.com/",
+		"Name": "Destiny Item Manager",
+		"Description": "Control Your Items Your Way. Swap items, check stats, build your loadout"
+	},
+	"3":{
+		"id": "003",
+		"URL": "https://ishtar-collective.net/",
+		"Name": "Ishtar Collective",
+		"Description": "Destiny Lore by Subject"
+	},
+	"4":{
+		"id": "004",
+		"URL": "https://lowlidev.com.au/destiny/",
+		"Name": "Lowlines",
+		"Description": "Interactive Destiny Maps"
+	},
+	"5":{
+		"id": "005",
+		"URL": "https://destinytracker.com/",
+		"Name": "Destiny Tracker",
+		"Description": "Destiny Stats, Leaderboards, Rankings, Playlist stats, LFG and more!"
+	},
+	"6":{
+		"id": "006",
+		"URL": "https://guardian.gg/",
+		"Name": "Guardian.GG",
+		"Description": "Destiny stats, Elo, leaderboards, match history, and profiles"
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"host": "127.0.0.1",
+	"username": "tournament-user",
+	"password": "encoded-password",
+	"dbname": "tournament-db"
+}

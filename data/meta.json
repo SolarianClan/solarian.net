@@ -82,5 +82,101 @@
 		"pageTitle": "Champion's Rose",
 		"pageKeywords": ",Champion's Rose,tourament,Winter,2019,Season of the Drifter",
 		"pageDescription": "Solarian Clan's Season of the Drifter PvP Tournament"		
+	},
+	"14": {
+		"filename": "partnership.php",
+		"pageTitle": "Partnerships",
+		"pageKeywords": ",Solarian Alliance,alliance,partner,partners,partnership",
+		"pageDescription": "Solarian Clan's Partnership and Alliance Program"		
+	},
+	"15": {
+		"filename": "podcast.php",
+		"pageTitle": "SolNotes Podcast",
+		"pageKeywords": ",podcast,weekly,SolNotes",
+		"pageDescription": "Solarian Clan's Weekly Community Podcast"		
+	},
+	"16": {
+		"filename": "401.php",
+		"pageTitle": "Not Authorised",
+		"pageKeywords": ",error,401,not authorised",
+		"pageDescription": "Error: 401  User Not Authorised"		
+	},
+	"17": {
+		"filename": "memberprofile.php",
+		"pageTitle": "Social Media Profile",
+		"pageKeywords": ",member, social media, profile, data collection, twitter, facebook, instagram, youtube, reddit",
+		"pageDescription": "This form is to voluntarily collect social media profile data from our community members"		
+	},
+	"18": {
+		"filename": "shop.php",
+		"pageTitle": "Merchandise Store",
+		"pageKeywords": ",shop, store, eCommerce, merchandise, sales, solarian logo, solnotes logo, solaria logo, t-shirt, hoodie, hat, sweatshirt, mug, tote, bag",
+		"pageDescription": "Solarian's officially licensed merchandise store"		
+	},
+	"19": {
+		"filename": "links.php",
+		"pageTitle": "Tools & Websites",
+		"pageKeywords": ",tools, websites, links, DIM, DestinySets, Destiny Tracker, Friendgame.Report, Raid.Report, Clan.Report, Guardian.GG, community",
+		"pageDescription": "The best and most popular tools and websites from the Destiny community"		
+	},
+	"20": {
+		"filename": "guide.php",
+		"pageTitle": "Joining Our Community",
+		"pageKeywords": ",community, new members, guide, help, how to, how-to, documentation, discord, clan, tips",
+		"pageDescription": "A guide for new members on getting everything setup, registered, and ready to play with our clans and on our Discord"		
+	},
+	"21": {
+		"filename": "sg-reg.php",
+		"pageTitle": "Solid Gold Tournament",
+		"pageKeywords": ",Solid Gold,tourament,Summer,2019,Season of Opulence, registration",
+		"pageDescription": "Register for Solarian Clan's Season of Opulence PvP Tournament"		
+	},
+	"22": {
+		"filename": "terms.php",
+		"pageTitle": "Terms of Service",
+		"pageKeywords": ",ToS,terms of service,terms,service,legal,polices,procedures,rules",
+		"pageDescription": "Solarian Terms of Service"		
+	},
+	"23": {
+		"filename": "solid-gold.php",
+		"pageTitle": "Solid Gold",
+		"pageKeywords": ",Solid Gold,tourament,Summer,2019,Season of Opulence",
+		"pageDescription": "Solarian Clan's Season of Opulence PvP Tournament"		
+	},
+	"24": {
+		"filename": "solid-gold-rules.php",
+		"pageTitle": "Solid Gold Rules",
+		"pageKeywords": ",Solid Gold,tourament,Summer,2019,Season of Opulence,rules",
+		"pageDescription": "Solid Gold PvP Tournament Rules"		
+	},
+	"25": {
+		"filename": "solid-gold-schedule.php",
+		"pageTitle": "Solid Gold Schedule",
+		"pageKeywords": ",Solid Gold,tourament,Summer,2019,Season of Opulence,schedule",
+		"pageDescription": "Solid Gold PvP Tournament Schedule & Match Signup"		
+	},
+	"26": {
+		"filename": "sg-reg.php",
+		"pageTitle": "Solid Gold Player Registration",
+		"pageKeywords": ",Solid Gold,tourament,Summer,2019,Season of Opulence,registration,enrollment,signup,player",
+		"pageDescription": "Solid Gold PvP Tournament Player Sign-up"		
+	},
+	"27": {
+		"filename": "solid-gold-signup.php",
+		"pageTitle": "Solid Gold Match Sign-up",
+		"pageKeywords": ",Solid Gold,tourament,Summer,2019,Season of Opulence,match signup",
+		"pageDescription": "Solid Gold Match Sign-up"		
+	},
+	"28": {
+		"filename": "solid-gold-leaderboard.php",
+		"pageTitle": "Solid Gold Leaderboard",
+		"pageKeywords": ",Solid Gold,tourament,Summer,2019,Season of Opulence,leaderboard",
+		"pageDescription": "Solid Gold Overall Leaderboards"		
+	},
+	"29": {
+		"filename": "tlcftm.php",
+		"pageTitle": "That Logo Came From The Moon! Contest",
+		"pageKeywords": ",community, content, 2019, 5th, fifth, anniversary, art, that logo came from the moon",
+		"pageDescription": "Contest details and submission page for the That Logo Came From The Moon! Contest"		
 	}
 }

@@ -25,34 +25,83 @@
 		"title": "Rules Enforcement",
 		"URL": "https://solarian.net/rules.php",
 		"description": "In an effort to improve user activity and community engagement, we are reviewing membership rolls and contacting anyone not meeting the user requirements",
-		"active": "1"
+		"active": "0"
 	},
 	"4": {
 		"date": "2018-12-31",
 		"title": "Recruitment Initative",
 		"URL": "https://solarian.net/recruiting.php",
 		"description": "As we open 2019, our clan will be doing an major recruitment push to bring more active Guardians into the community across both platforms",
-		"active": "1"
+		"active": "0"
 	},
 	"5": {
 		"date": "2019-01-01",
 		"title": "Website Redesign",
 		"URL": "https://solarian.net/",
 		"description": "Our clan's website at solarian.net has been redesigned from the ground up to reflect the recent changes, updates, and expansion of our clan",
-		"active": "1"
+		"active": "0"
 	},
 	"6": {
 		"date": "2019-01-22",
 		"title": "Successful End to Recruiting",
 		"URL": "https://solarian.net/recruiting.php",
 		"description": "Our three week recruiting campaign has drawn to a close, with great success.  We brought in over 115 new players across all three platforms!",
-		"active": "1"
+		"active": "0"
 	},
 	"7": {
 		"date": "2019-02-12",
 		"title": "Announcing Champion's Rose Tournament",
 		"URL": "https://www.youtube.com/watch?v=2KKfqH2gilU",
 		"description": "Solarian Clan is proud to announce <i>Champion's Rose</i>, our first-ever cross-platform Destiny 2 PvP Tournament!  This tournament is scheduled to coincide with the Season of the Drifter.",
+		"active": "0"
+	},
+	"8": {
+		"date": "2019-03-15",
+		"title": "Clan Expansion &amp; March Recruiting",
+		"URL": "https://solarian.net/recruiting.php",
+		"description": "Our clan has grown to over 350 members across all three platforms and around the world! To accomodate this growth, we've expanded into several clans on each Destiny platform. We are also running another membership drive, timed to coincide with Invitations of the Nine!",
+		"active": "0"
+	},
+	"9": {
+		"date": "2019-03-31",
+		"title": "SolNotes Podcast",
+		"URL": "https://solarian.net/podcast.php",
+		"description": "SolNotes is a weekly talk radio-style podcast hosted and produced by our very own JustGeo42!  Every week, a rotating compliment of community members talk about what's going on in the Solarian community and in Destiny at large.  Head to the <a href=\"podcast.php\">podcast page</a> and have a listen!",
+		"active": "1"
+	},
+	"10": {
+		"date": "2019-04-07",
+		"title": "Solarian Exiles",
+		"URL": "https://www.youtube.com/watch?v=OKupduci1DE",
+		"description": "Solarian is pleased to welcome the clan formerly known as the Iron Exiles to our family as <b>Solarian Exiles</b>!  This clan of nearly 50 PS4 Guardians has joined our community, brining a long and storied history of Day 1 raiding, as well as many active and skilled players and leaders!",
+		"active": "0"
+	},
+	"11": {
+		"date": "2019-05-28",
+		"title": "Opulent Membership Drive",
+		"URL": "https://solarian.net/recruiting.php",
+		"description": "Solarian has reached over 1000 members in out community!  We have 12 in-game clans across all three platforms and are always looking for more quality players to join our ranks.  To that end, our seasonal membership drive is underway and seeking the best Guardians Destiny has to offer!",
+		"active": "1"
+	},
+	"12": {
+		"date": "2019-06-21",
+		"title": "Announcing the Solid Gold Tournament",
+		"URL": "https://www.youtube.com/watch?v=6HbEzrSD-TA",
+		"description": "Solarian Clan is proud to announce \"Solid Gold\", our Season of Opulence Destiny 2 PvP Tournament! Guardians will compete in regularly scheduled Rumble matches against other tournament participants.  At the end of each bracket, the players with the highest number of kills in a single match will be awarded points.  The player with the most points at the end of the tournament wins!  Each of the tournament's six weeks will feature a unique curated loadout and designated map, following a schedule that will be published with the rules and registration information.",
+		"active": "1"
+	},
+	"13": {
+		"date": "2019-08-22",
+		"title": "The Solid Solarians",
+		"URL": "https://www.youtube.com/watch?v=I1w1NlIvN68",
+		"description": "Solarian is pleased to welcome the clan formerly known as the The Solid Guardians to our family as <b>Solid Solarians</b>!  This clan of around 25 PS4 Guardians has joined our community, brining a long and storied history tracing back to the launch of Destiny 2, as well as many active and skilled players and leaders!",
+		"active": "1"
+	},
+	"14": {
+		"date": "2019-08-24",
+		"title": "That Logo Came From The Moon!",
+		"URL": "https://solarian.net/challenge/",
+		"description": "Solarian is pleased to announce a Community Challenge to celebrate our fifth anniversary!  We're asking the artists among us to design a new logo, icon, splash screen, and wallpaper in the style of Destiny 2: Shadowkeep™.  The winner will be voted on by the leadership team, with a prize package that includes Silver, clan swag, and a title in the Discord!",
 		"active": "1"
 	}
 }

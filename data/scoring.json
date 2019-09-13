@@ -1,0 +1,23 @@
+{
+  "BASELINE": {
+    "model": "BASELINE",
+    "topScore": "100",
+    "rankStepDown": "0.1",
+    "topCatchupMultipler": "0",
+    "catchupMultiplerStepdown": "0"
+  },
+  "STANDARD": {
+    "model": "STANDARD",
+    "topScore": "100",
+    "rankStepDown": "0.1",
+    "topCatchupMultipler": "0.25",
+    "catchupMultiplerStepdown": "0.025"
+  },
+  "CATCHUP": {
+    "model": "CATCHUP",
+    "topScore": "150",
+    "rankStepDown": "0.1",
+    "topCatchupMultipler": "0.5",
+    "catchupMultiplerStepdown": "0.05"
+  }
+}
