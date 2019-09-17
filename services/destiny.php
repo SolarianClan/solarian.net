@@ -59,6 +59,10 @@ define("TEST_PGCR_ID", '3758712628');
 define("TEST_BUSER_ID", '4316634');
 # define the number of recent activities to query for "Recent" functions MAX VALID VALUE: 250
 define("QUERY_RECENT_GAMES", '250');
+# define length of time to be considered "idle" and be eligible for clan removal
+defined("DEFAULT_IDLE_KICK_TIMEOUT") or define("DEFAULT_IDLE_KICK_TIMEOUT", "60 days");
+# define idle clan member exemption data file
+defined('IDLE_CLAN_MEMBER_DATA_FILE') or define('IDLE_CLAN_MEMBER_DATA_FILE', DATA_PATH . "idle-exempt.json");
 
 if (is_readable(APP_DATA_FILE)) {
 
@@ -674,6 +678,7 @@ function triumphScore($playerID = TEST_USER_ID, $platform = TEST_USER_PLATFORM) 
 } //end function triumphScore()
 
 function getLatestTWABLink() {
+	
 	$thisURL = "/Platform/Trending/Categories/";
 
 	$results = queryAPI($thisURL);
@@ -753,6 +758,7 @@ function clanRosterById($clanId = TEST_CLAN_ID) {
 	$userData[$thisUser]["memberType"] = $thisMemberType;
 	$userData[$thisUser]["clanId"] = $roster[$member]["groupId"];
 	$userData[$thisUser]["joinDate"] = $roster[$member]["joinDate"];
+	$userData[$thisUser]["lastOnlineStatusChange"] = date("c", $roster[$member]["lastOnlineStatusChange"]);
 	
 	} // end foreach roster iteration
 	
@@ -788,12 +794,28 @@ function joinDateCompare($a, $b) {
 	return $t1 - $t2;
 } // end function joinDateCompare()
 
+function idleDateCompare($a, $b) {
+	$t1 = strtotime($a['lastOnlineStatusChange']);
+	$t2 = strtotime($b['lastOnlineStatusChange']);
+	return $t1 - $t2;
+} // end function idleDateCompare()
+
 
 function multiclanRosterByJoinDate() {
 
 $clanList = multiclanRoster();
 
 usort($clanList, 'joinDateCompare');
+	
+return($clanList);
+
+} // end function multiclanRosterByJoinDate()
+
+function multiclanRosterByIdleDate() {
+
+$clanList = multiclanRoster();
+
+usort($clanList, 'idleDateCompare');
 	
 return($clanList);
 
@@ -818,6 +840,26 @@ function clanBeginners() {
 	return($beginnerArray);
 	
 } // end function clanBeginners()
+
+function multiclanAdmins() {
+	
+	$fullRoster = multiclanRosterByJoinDate();
+	$adminArray = array();
+	
+	$i = 0;
+	
+	foreach ($fullRoster as $member=>$attribute) {
+		
+		if (($fullRoster[$member]["memberType"] == "Admin") or ($fullRoster[$member]["memberType"] == "Founder") or ($fullRoster[$member]["memberType"] == "Acting Founder")) {
+			$adminArray[$i] = $fullRoster[$member];
+			$i++;			
+		} // end if beginner
+		
+	} //end foreach member
+	
+	return($adminArray);
+	
+} // end function multiclanAdmins()
 
 function clanFullMembers() {
 	
@@ -1066,7 +1108,6 @@ function lastActivitiesById($playerId = TEST_USER_ID, $playerPlatform = TEST_USE
 	
 	foreach ( $thisPlayer as $character=>$attribute ) {
 		
-		// INCOMPLETE
 		
 	} // end foreach character
 	
@@ -1255,7 +1296,25 @@ function getClanWeeklyEngrams($clanId = TEST_CLAN_ID) {
 	$clanData = queryAPI("/Platform/Destiny2/Clan/{$clanId}/WeeklyRewardState/");
 	//$rewardManifest = getManifestTable('DestinyMilestoneDefinition');
 	
+	//lookupInManifest()
+	
+
+	
+	$allEngrams = $clanData['Response']['rewards'];
+	
+	foreach ($allEngrams as $thisGroup=>$value) {
+		
+		if ($allEngrams[$thisGroup]['rewardCategoryHash'] == '1064137897') {
+			
+			$engramStates = $allEngrams[$thisGroup]['entries'];
+			
+		} // end if correct group
+		
+	} // end foreach engram group
+	
 	//INCOMPLETE
+	
+	return($engramStates);
 	
 } // end function getClanWeeklyEngrams()
 
@@ -1296,6 +1355,25 @@ function getFullClanMembershipIds() {
 	return($clanMembers);
 	
 } // end function getFullClanMembershipIds()
+
+function getSingleClanMembershipIds($thisClan = TEST_CLAN_ID) {
+	
+	$clanRoster = clanRosterById($thisClan);
+	
+	$clanMembers = array();
+	
+	$count = 0;
+	
+	foreach ($clanRoster as $thisPlayer=>$value) {
+		
+		$clanMembers[$count] = $clanRoster[$thisPlayer]["userId"];
+		$count++;
+		
+	} // end foreach member
+	
+	return($clanMembers);
+	
+} // end function getSingleClanMembershipIds()
 
 function getRecentActivitiesByCharacter($playerId = TEST_USER_ID, $playerPlatform = TEST_USER_PLATFORM, $characterId = TEST_USER_CHARACTER, $numActivitiesToQuery = QUERY_RECENT_GAMES) {
 	
@@ -1421,5 +1499,110 @@ function eligibleForPromotion($numActivitiesToQuery = QUERY_RECENT_GAMES) {
 	return($promotionList);
 	
 } // end function eligibleForPromotion()
+
+function getClanNameByIdFromLocal($clanId = TEST_CLAN_ID, $clanDataFile = CLAN_DATA_FILE) {
+	
+	if (is_readable($clanDataFile) === false) {
+		
+		error_exit('Cannot read data file: '.$clanDataFile);
+		
+	} else {
+		
+		$multiClanData = json_decode(file_get_contents($clanDataFile), true);
+		
+	}
+	
+	$clanFound = false;
+	$thisClanName = "NOT FOUND";
+	
+	foreach ($multiClanData as $thisClan=>$value) {
+		
+		if ($multiClanData[$thisClan]["id"] == $clanId) {
+			
+			$thisClanName = $multiClanData[$thisClan]["name"];
+			$clanFound = true;
+			
+		} // end if clan match found
+		
+	} // end foreach clan
+	
+	return($thisClanName);
+	
+} // end function getClanNameByIdFromLocal()
+
+function getSingleClanIdleMembers($clanId = TEST_CLAN_ID, $honourExemptions = true, $idleExemptDataFile = IDLE_CLAN_MEMBER_DATA_FILE) {
+	
+	$clanRoster = getSingleClanMembershipIds($clanId);
+	
+} // end function getSingleClanIdleMembers()
+
+function getDestinyIdsByBungieId($bungieId) {
+	
+	if (($bungieId == '') or ($bungieId == NULL)) {
+		
+		error_exit('Unable to determine Bungie Membership ID');
+	}
+	
+	$fullMembershipData = queryAPI("/Platform/User/GetMembershipsById/{$bungieId}/-1/");
+	
+	$playerMemberships = $fullMembershipData['Response']['destinyMemberships'];
+	
+	$playerData = array();
+	
+	foreach ($playerMemberships as $thisMember=>$value) {
+		
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['membershipType'] = $playerMemberships[$thisMember]['membershipType'];
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['membershipId'] = $playerMemberships[$thisMember]['membershipId'];
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['displayName'] = $playerMemberships[$thisMember]['displayName'];
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['crossSaveOverride'] = $playerMemberships[$thisMember]['crossSaveOverride'];
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['dateLastPlayed'] = getLastPlayedDateById($playerMemberships[$thisMember]['membershipId'], $playerMemberships[$thisMember]['membershipType']);
+		
+	}
+	
+	return($playerData);
+	
+} // end function getDestinyIdByBungieId()
+
+function getLastPlayedDateById($membershipId = TEST_USER_ID, $platform = TEST_USER_PLATFORM) {
+	
+	$playerProfile = queryAPI("/Platform/Destiny2/{$platform}/Profile/{$membershipId}/?components=100");
+	
+	if ($playerProfile['ErrorCode'] == 1) {
+	
+		$lastPlayedDate = $playerProfile['Response']['profile']['data']['dateLastPlayed'];
+	
+	} else {
+		
+		$lastPlayedDate = "1970-01-01T00:00:00Z";
+		
+	}
+	return($lastPlayedDate);
+	
+} // end function getLastPlayedDateById()
+
+function getMostRecentlyPlayedDestinyIdbyBungieId($bungieId) {
+	
+	if (($bungieId == '') or ($bungieId == NULL)) {
+		
+		error_exit('Unable to determine Bungie Membership ID');
+	}
+	
+	$playerMembershipProfiles = getDestinyIdsByBungieId($bungieId);
+	
+	$overallLastPlayedDate = date_create("1970-01-01T00:00:00Z")->format('Y-m-d H:i:s');
+	
+	foreach ($playerMembershipProfiles as $thisProfile=>$value) {
+		$thisPlayerLastPlayedDate = date_create($playerMembershipProfiles[$thisProfile]['dateLastPlayed'])->format('Y-m-d H:i:s');
+		if ($thisPlayerLastPlayedDate > $overallLastPlayedDate) {
+			$overallLastPlayedDate = $thisPlayerLastPlayedDate;
+			$lastPlayedMembershipId = $playerMembershipProfiles[$thisProfile]['membershipId'];
+			$lastPlayedMembershipType = $playerMembershipProfiles[$thisProfile]['membershipType'];
+			$lastPlayedDisplayName = $playerMembershipProfiles[$thisProfile]['displayName'];
+		} // end if most recent played character		
+	} // end foreach profile
+	
+	return(array('membershipId'=>$lastPlayedMembershipId, 'membershipType'=>$lastPlayedMembershipType, 'displayName'=>$lastPlayedDisplayName, 'dateLastPlayed'=>$overallLastPlayedDate));
+	
+} // end function getMostRecentlyPlayedDestinyIdbyBungieId()
 
 ?>
