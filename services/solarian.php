@@ -23,6 +23,10 @@ require_once(SERVICE_PATH. "dashboard.php");
 // Add library for banner building services
 require_once(SERVICE_PATH. "banner.php");
 
+// Default idle timeout period to be eligible for clan kick
+define("DEFAULT_IDLE_KICK_TIMEOUT", "60 days");
+
+// Solarian Local aliases for Destiny library functions
 use function multiclanRoster as solarianRoster;
 use function multiclanRosterByJoinDate as solarianRosterByJoinDate;
 
@@ -345,6 +349,214 @@ function displayStatus($statusDataFile = DATA_PATH.'status.json') {
 	
 } // end function displayStatus
 
+function kickEligibleDueToIdle($idlePeriod = DEFAULT_IDLE_KICK_TIMEOUT) {
+	
+	$clanMembers = solarianRoster();
+	
+	
+} // end function kickEligibleDueToIdle();
 
+function addToIdleExemptListForDuration($userData, $awayDuration = "90 days", $idleExemptFile = IDLE_CLAN_MEMBER_DATA_FILE) {
+	
+	$currentExemptList = json_decode(file_get_contents($idleExemptFile), true);
+	
+	if ($currentExemptList == null) {
+		
+		$currentExemptList = array();
+		
+	}
+	
+	$now = date_create('now')->format('c');
+	$exemptionExpiration = date_create('now +'.$awayDuration)->format('c');
+	
+	$userData['dateRequested'] = $now;
+	$userData['exemptionExpiration'] = $exemptionExpiration;
+	
+	array_push($currentExemptList, $userData);
+	
+	file_put_contents($idleExemptFile, json_encode($currentExemptList));
+	
+	log_action("Added user {$userData['membershipId']} to idle exemption list for {$awayDuration}", $_SESSION['solMembershipId']);
+	
+} // end function addToIdleExemptListForDuration()
+
+function isInIdleExemptList($userData, $idleExemptFile = IDLE_CLAN_MEMBER_DATA_FILE) {
+	
+	$currentExemptList = json_decode(file_get_contents($idleExemptFile), true);
+	
+	if ($currentExemptList == null) {
+		
+		$currentExemptList = array();
+		
+	}
+
+	$retVal = false;
+	
+	foreach ($currentExemptList as $thisExemption=>$value) {
+		
+		if ($currentExemptList[$thisExemption]['membershipId'] == $userData['membershipId']) {
+			$retVal = true;
+		}
+		
+	} // end foreach exemption
+	
+	return($retVal);
+	
+} // end function isInIdleExemptionList()
+
+function cleanIdleExemptList($idleExemptFile = IDLE_CLAN_MEMBER_DATA_FILE) {
+	
+	function dateDiff ($d1, $d2) {
+
+    // Return the number of days between the two dates:    
+    return round((strtotime($d1) - strtotime($d2))/86400);
+
+} // end function dateDiff
+	
+	$currentExemptList = json_decode(file_get_contents($idleExemptFile), true);
+	
+	if ($currentExemptList == null) {
+		
+		$currentExemptList = array();
+		
+	}
+	
+	$newExemptList = array();
+	// $now = new DateTime('now');
+	$now = date_create('now')->format('c');
+	$count = 0;
+	
+	foreach ($currentExemptList as $thisExemption=>$value) {
+		
+		if ($currentExemptList[$thisExemption]['permanentExemption'] === false) {
+			//$thisExpiration = new DateTime($currentExemptList[$thisExemption]['exemptionExpiration']);
+			$thisExpiration = $currentExemptList[$thisExemption]['exemptionExpiration'];
+			//if ($thisExpiration->diff($now)->days > 1) {
+			if (dateDiff($thisExpiration, $now) > 1) {
+					$newExemptList[$count] = $currentExemptList[$thisExemption];
+					$count++;
+			} // end if exemption not expired
+		} else { 
+			$newExemptList[$count] = $currentExemptList[$thisExemption];
+			$count++;		
+		}// end if permanent exemption
+	} // end foreach exemption
+	
+	file_put_contents($idleExemptFile, json_encode($newExemptList));
+	
+} // end function cleanIdleExemptList()
+
+function getIdleExemptList($idleExemptFile = IDLE_CLAN_MEMBER_DATA_FILE) {
+	
+	cleanIdleExemptList();
+	return(json_decode(file_get_contents($idleExemptFile), true));
+	
+} // end function getIdleExemptList()
+
+function removeFromIdleExemptionList($membershipId, $idleExemptFile = IDLE_CLAN_MEMBER_DATA_FILE) {
+	
+	cleanIdleExemptList();
+	
+	$currentExemptList = json_decode(file_get_contents($idleExemptFile), true);
+	
+	if ($currentExemptList == null) {
+		
+		$currentExemptList = array();
+		
+	}
+	
+	$newExemptList = array();
+	$count = 0;
+	
+	foreach ($currentExemptList as $thisExemption=>$value) {
+		
+		if ($currentExemptList[$thisExemption]['membershipId'] != $membershipId) {
+				$newExemptList[$count] = $currentExemptList[$thisExemption];
+				$count++;
+		} // end if exemption not selected for deletion
+		
+	} // end foreach exemption
+	
+	file_put_contents($idleExemptFile, json_encode($newExemptList));
+	
+	log_action("Removed user {$membershipId} from idle exemption list", $_SESSION['solMembershipId']);
+	
+} // end function removeFromIdleExemptionList()
+
+function clanAdminCheck() {
+	
+	refreshAuthToken();
+	if (isCurrentUserClanAdmin() === false) {
+		
+		header('Location: https://solarian.net/not-admin.php');
+		
+	}
+	
+} //end function clanAdminCheck()
+
+function retrieveIdleExemptionEntry($membershipId, $idleExemptFile = IDLE_CLAN_MEMBER_DATA_FILE) {
+	
+	cleanIdleExemptList();
+	
+	$currentExemptList = json_decode(file_get_contents($idleExemptFile), true);
+	
+	foreach ($currentExemptList as $thisExemption=>$value) {
+		
+		if ($currentExemptList[$thisExemption]['membershipId'] == $membershipId) {
+			
+			$returnUser = $currentExemptList[$thisExemption];
+			
+		}
+		
+	} // end foreach exemption
+	
+	if (!isset($returnUser)) {
+		
+		$returnUser = null;
+		
+	}
+	
+	return($returnUser);
+	
+} // end function retrieveIdleExemptionEntry()
+
+function updateIdleExemptionListEntry($userData, $idleExemptFile = IDLE_CLAN_MEMBER_DATA_FILE) {
+	
+	cleanIdleExemptList();
+	
+	$currentExemptList = json_decode(file_get_contents($idleExemptFile), true);
+	
+	if ($currentExemptList == null) {
+		
+		$currentExemptList = array();
+		
+	}
+	
+	$newExemptList = array();
+	$count = 0;
+	
+	foreach ($currentExemptList as $thisExemption=>$value) {
+		
+		if ($currentExemptList[$thisExemption]['membershipId'] == $userData['membershipId']) {
+			$newExemptList[$count]['membershipId'] = $userData['membershipId'];
+			$newExemptList[$count]['membershipType'] = $userData['membershipType'];
+			$newExemptList[$count]['displayName'] = $userData['displayName'];
+			$newExemptList[$count]['clanId'] = $userData['clanId'];
+			$newExemptList[$count]['permanentExemption'] = $userData['permanentExemption'];
+			$newExemptList[$count]['dateRequested'] = $userData['dateRequested'];
+			$newExemptList[$count]['exemptionExpiration'] = $userData['exemptionExpiration'];
+			$count++;
+		} else {
+			$newExemptList[$count] = $currentExemptList[$thisExemption];
+			$count++;	
+		}// end if exemption for editing
+		
+	} // end foreach exemption
+	
+	file_put_contents($idleExemptFile, json_encode($newExemptList));
+	
+	log_action("Edited user {$userData['membershipId']} in idle exemption list", $_SESSION['solMembershipId']);
+	
+} // end function updateIdleExemptionListEntry()
 
 ?>

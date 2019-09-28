@@ -10,12 +10,16 @@ defined('INSTALLATION_PATH') or define("INSTALLATION_PATH", '/var/www/solarian.n
 defined('DATA_PATH') or define("DATA_PATH", INSTALLATION_PATH."data/");
 # define path to library files if not already defined
 defined('SERVICE_PATH') or define('SERVICE_PATH', INSTALLATION_PATH."services/");
+# define path to log files if not already defined
+defined('LOG_PATH') or define('LOG_PATH', INSTALLATION_PATH."logs/");
 # define whether the application configuration is encoded(encrypted)
 define("CFG_ENCODED", TRUE);
 # define location of file containing application identifiers
 define("APP_DATA_FILE", DATA_PATH."appdata.cfg");
 # define clan data file
 defined('CLAN_DATA_FILE') or define('CLAN_DATA_FILE', DATA_PATH . "solarian.json");
+# define log file
+defined('LOG_FILE') or define('LOG_FILE', LOG_PATH . "SolariaCore.log");
 # define base protocol used to query API
 define("PROTOCOL", "https://");
 # define server and FQDN to access API from
@@ -59,10 +63,12 @@ define("TEST_PGCR_ID", '3758712628');
 define("TEST_BUSER_ID", '4316634');
 # define the number of recent activities to query for "Recent" functions MAX VALID VALUE: 250
 define("QUERY_RECENT_GAMES", '250');
-# define length of time to be considered "idle" and be eligible for clan removal
-defined("DEFAULT_IDLE_KICK_TIMEOUT") or define("DEFAULT_IDLE_KICK_TIMEOUT", "60 days");
+# define length of time (in days) to be considered "idle" and be eligible for clan removal
+defined("DEFAULT_IDLE_KICK_TIMEOUT") or define("DEFAULT_IDLE_KICK_TIMEOUT", "60");
 # define idle clan member exemption data file
 defined('IDLE_CLAN_MEMBER_DATA_FILE') or define('IDLE_CLAN_MEMBER_DATA_FILE', DATA_PATH . "idle-exempt.json");
+# define the number of seconds to wait between attempts to re-query the API
+defined("DEFAULT_REQUERY_TIME") or define("DEFAULT_REQUERY_TIME", "1");
 
 if (is_readable(APP_DATA_FILE)) {
 
@@ -123,10 +129,31 @@ function error_exit( $error_code = "undefined" ) {
 	print_r(error_get_last().":".$error_code."\n");
 	exit(1);
 
-}
+} // end function error_exit()
 
-function queryAuthAPI($thisURL) {
+function log_action( $actionMessage = "undefined", $actionUser = "undefined", $logFile = LOG_FILE) {
+	
+	if (!is_writable($logFile)) {
+		
+		//print('Unable to write to log file');
+		$retVal = false;
+		
+	} else {
+	$now = date_create('now')->format('c');
+	$logEntry = "[{$now}] ({$actionUser}) {$actionMessage}\n";
+	
+	file_put_contents($logFile, $logEntry, FILE_APPEND | LOCK_EX);
+	$retVal = true;
+	}
+	
+	return($retVal);
+} // end function log_action()
 
+function queryAuthAPI($thisURL, $returnJSON = false) {
+
+	$querySuccess = false;
+	$attemptCount = 0;
+	while (($querySuccess === false) && ($attemptCount < 5)) {
     $pQueryHandle = curl_init();
     $pQueryURL = PROTOCOL.API_SERVER.$thisURL;
 
@@ -141,10 +168,26 @@ function queryAuthAPI($thisURL) {
     curl_setopt($pQueryHandle, CURLOPT_HTTPGET, true);
 
     $pQueryReturn = curl_exec($pQueryHandle);
-
+	$pQueryReturnArray = json_decode($pQueryReturn, true);
     curl_close($pQueryHandle);
-
-    $results = json_decode($pQueryReturn, true);
+		
+	if ($pQueryReturnArray['ErrorCode'] == 1) {
+		$querySuccess = true;
+	} else {
+		$attemptCount++;
+		sleep(DEFAULT_REQUERY_TIME);
+	}
+	
+	} // end query attempts
+	
+	$pQueryReturnArray['solAttemptCount'] = $attemptCount;
+	$pQueryReturnArray['solQuerySucceeded'] = $querySuccess;
+	
+    if ($returnJSON === true) {
+		$results = $pQueryReturn;
+	} else {
+    	$results = $pQueryReturnArray;
+	}
 	
 	return($results);
 	
@@ -295,7 +338,11 @@ function getAuthTokenFromCode($authCode) {
 		$_SESSION['solTokenExpiresIn'] = $newToken->expires_in;
 		$_SESSION['solRefreshTokenExpiresIn'] = $newToken->refresh_expires_in;
 		$_SESSION['solMembershipId'] = $newToken->membership_id;
-		$tokenExpiration = date_create("+{$newToken->refresh_expires_in} seconds")->format('Y-m-d H:i:s');
+		//$tokenExpiration = date_create("+{$newToken->refresh_expires_in} seconds")->format('Y-m-d H:i:s');
+		$expSeconds = $newToken->refresh_expires_in;
+		if (!is_int($expSeconds)) { $expSeconds = 600; }
+		$tokenTime = "now +".$expSeconds." seconds";
+		$tokenExpiration = date_create($tokenTime)->format('Y-m-d H:i:s');
 		$_SESSION['solRefreshTokenExpiresAt'] = $tokenExpiration;
 		
 	} else {
@@ -309,6 +356,10 @@ function getAuthTokenFromCode($authCode) {
 } // end function getAuthTokenFromCode()
 
 function refreshAuthToken() {
+	
+	$refreshSuccess = false;
+	
+	while ($refreshSuccess === false) {
 	
 	$authURL = PROTOCOL.API_SERVER."/Platform/App/OAuth/Token/";
 	
@@ -327,13 +378,20 @@ function refreshAuthToken() {
 	
 	$newToken = json_decode($result);
 	
+	if ($newToken->error != "server_error") { $refreshSuccess = true; } else { sleep(DEFAULT_REQUERY_TIME); }
+	
+	}
 	$_SESSION['solAccessToken'] = $newToken->access_token;
 	$_SESSION['solRefreshToken'] = $newToken->refresh_token;
 	$_SESSION['solTokenType'] = $newToken->token_type;
 	$_SESSION['solTokenExpiresIn'] = $newToken->expires_in;
 	$_SESSION['solRefreshTokenExpiresIn'] = $newToken->refresh_expires_in;
 	$_SESSION['solMembershipId'] = $newToken->membership_id;
-	$tokenExpiration = date_create("+{$newToken->refresh_expires_in} seconds")->format('Y-m-d H:i:s');
+	$expSeconds = $newToken->refresh_expires_in;
+	if (!is_int($expSeconds)) { $expSeconds = 600; }
+	$tokenTime = "now +".$expSeconds." seconds";
+	$tokenExpiration = date_create($tokenTime)->format('Y-m-d H:i:s');
+	//$tokenExpiration = date_create("now +".$newToken->refresh_expires_in." seconds")->format('Y-m-d H:i:s');
 	$_SESSION['solRefreshTokenExpiresAt'] = $tokenExpiration;
 	
 	return(json_decode($result, true));
@@ -1312,9 +1370,30 @@ function getClanWeeklyEngrams($clanId = TEST_CLAN_ID) {
 		
 	} // end foreach engram group
 	
-	//INCOMPLETE
+	foreach ($engramStates as $thisState=>$value) {
+		
+		switch ($engramStates[$thisState]['rewardEntryHash']) {
+				
+			case '3789021730': 
+				$nightfallEngram = $engramStates[$thisState]['earned'];
+				break;
+			case '248695599':
+				$gambitEngram = $engramStates[$thisState]['earned'];
+				break;
+			case '2043403989':
+				$raidEngram = $engramStates[$thisState]['earned'];
+				break;
+			case '964120289':
+				$crucibleEngram = $engramStates[$thisState]['earned'];
+				break;
+				
+		}
+		
+	}
 	
-	return($engramStates);
+	$weeklyClanEngrams = array('crucible'=>$crucibleEngram, 'nightfall'=>$nightfallEngram, 'raid'=>$raidEngram, 'gambit'=>$gambitEngram);
+	
+	return($weeklyClanEngrams);
 	
 } // end function getClanWeeklyEngrams()
 
@@ -1563,6 +1642,33 @@ function getDestinyIdsByBungieId($bungieId) {
 	
 } // end function getDestinyIdByBungieId()
 
+function getDestinyIdsForCurrentUser() {
+	
+	$fullMembershipData = queryAuthAPI("/Platform/User/GetMembershipsForCurrentUser/");
+	
+	if ($fullMembershipData['solQuerySucceeded'] === false) {
+		error_exit('Could not obtain data for current user from Bungie API.');
+	}
+	
+	$playerMemberships = $fullMembershipData['Response']['destinyMemberships'];
+	
+	$playerData = array();
+	
+	foreach ($playerMemberships as $thisMember=>$value) {
+		
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['membershipType'] = $playerMemberships[$thisMember]['membershipType'];
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['membershipId'] = $playerMemberships[$thisMember]['membershipId'];
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['displayName'] = $playerMemberships[$thisMember]['displayName'];
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['crossSaveOverride'] = $playerMemberships[$thisMember]['crossSaveOverride'];
+		$playerData[$playerMemberships[$thisMember]['membershipType']]['dateLastPlayed'] = getLastPlayedDateById($playerMemberships[$thisMember]['membershipId'], $playerMemberships[$thisMember]['membershipType']);
+		
+	}
+	
+	return($playerData);
+	
+} // end function getDestinyIdsForCurrentUser()
+
+
 function getLastPlayedDateById($membershipId = TEST_USER_ID, $platform = TEST_USER_PLATFORM) {
 	
 	$playerProfile = queryAPI("/Platform/Destiny2/{$platform}/Profile/{$membershipId}/?components=100");
@@ -1604,5 +1710,126 @@ function getMostRecentlyPlayedDestinyIdbyBungieId($bungieId) {
 	return(array('membershipId'=>$lastPlayedMembershipId, 'membershipType'=>$lastPlayedMembershipType, 'displayName'=>$lastPlayedDisplayName, 'dateLastPlayed'=>$overallLastPlayedDate));
 	
 } // end function getMostRecentlyPlayedDestinyIdbyBungieId()
+
+function getMostRecentlyPlayedDestinyIdForCurrentUser() {
+	
+	$playerMembershipProfiles = getDestinyIdsForCurrentUser();
+	
+	$overallLastPlayedDate = date_create("1970-01-01T00:00:00Z")->format('Y-m-d H:i:s');
+	
+	foreach ($playerMembershipProfiles as $thisProfile=>$value) {
+		$thisPlayerLastPlayedDate = date_create($playerMembershipProfiles[$thisProfile]['dateLastPlayed'])->format('Y-m-d H:i:s');
+		if ($thisPlayerLastPlayedDate > $overallLastPlayedDate) {
+			$overallLastPlayedDate = $thisPlayerLastPlayedDate;
+			$lastPlayedMembershipId = $playerMembershipProfiles[$thisProfile]['membershipId'];
+			$lastPlayedMembershipType = $playerMembershipProfiles[$thisProfile]['membershipType'];
+			$lastPlayedDisplayName = $playerMembershipProfiles[$thisProfile]['displayName'];
+		} // end if most recent played character		
+	} // end foreach profile
+	
+	return(array('membershipId'=>$lastPlayedMembershipId, 'membershipType'=>$lastPlayedMembershipType, 'displayName'=>$lastPlayedDisplayName, 'dateLastPlayed'=>$overallLastPlayedDate));
+	
+} // end function getMostRecentlyPlayedDestinyIdForCurrentUser()
+
+function getMulticlanIdleTooLongList($idleTimeout = DEFAULT_IDLE_KICK_TIMEOUT) {
+	
+	$multiclanRoster = multiclanRosterByIdleDate();
+	
+	$idleList = array();
+	$idleCount = 0;
+	
+	foreach ($multiclanRoster as $thisPlayer=>$value) {
+		
+		$dateLastPlayed = getLastPlayedDateById($multiclanRoster[$thisPlayer]['userId'], $multiclanRoster[$thisPlayer]['platform']);
+		$multiclanRoster[$thisPlayer]['usingLastOnlineStatusChangeAsDateLastPlayed'] = false;
+		if ($dateLastPlayed == "1970-01-01T00:00:00Z") {
+			$dateLastPlayed = $multiclanRoster[$thisPlayer]['lastOnlineStatusChange'];
+			$multiclanRoster[$thisPlayer]['usingLastOnlineStatusChangeAsDateLastPlayed'] = true;
+		} // end if unable to obtain dateLastPlayed
+		
+		$lastPlayed = new DateTime($dateLastPlayed);
+		$now = new DateTime("now");
+		if ($lastPlayed->diff($now)->days > $idleTimeout) {
+			$idleList[$idleCount] = $multiclanRoster[$thisPlayer];
+			$idleList[$idleCount]['dateLastPlayed'] = $dateLastPlayed;
+			$idleCount++;			
+		} // end if idle too long
+		
+	} // end foreach Member
+	
+	return($idleList);
+	
+} // end function getMulticlanIdleTooLongList()
+
+function getClanIdByMembershipId($membershipId = TEST_USER_ID, $playerPlatform = TEST_USER_PLATFORM) {
+	
+	$playerClanData = queryAuthAPI("/Platform/GroupV2/User/{$playerPlatform}/{$membershipId}/0/1/");
+	
+	$clanInfo = $playerClanData['Response']['results'][0]['group'];
+	
+	$thisClan['clanId'] = $clanInfo['groupId'];
+	$thisClan['clanName'] = $clanInfo['name'];
+	$thisClan['clanTag'] = $clanInfo['clanInfo']['clanCallsign'];
+	
+	return($thisClan);
+	
+} // end function getClanIdByMembershipId()
+
+function getClanAdminIdList($clanId = TEST_CLAN_ID) {
+	
+	$fullClanAdminData = queryAPI("/Platform/GroupV2/{$clanId}/AdminsAndFounder/");
+	$adminListings = $fullClanAdminData['Response']['results'];
+	
+	$adminIds = array();
+	$count = 0;
+	
+	
+	foreach ($adminListings as $thisAdmin=>$value) {
+		
+		$adminIds[$count] = $adminListings[$thisAdmin]['destinyUserInfo']['membershipId'];
+		$count++;
+		
+	} // end foreach admin
+	
+	return($adminIds);
+	
+} // end function getClanAdminIdList()
+
+function getMulticlanAdminIdList($clanDataFile = CLAN_DATA_FILE) {
+	
+	$clanList = json_decode(file_get_contents($clanDataFile), true);
+	
+	$adminIds = array();
+	
+	foreach ($clanList as $clan=>$value) {
+		
+		$thisClanAdminIds = getClanAdminIdList($clanList[$clan]["id"]);
+			
+		$newList = array_merge($adminIds, $thisClanAdminIds);
+		$adminIds = $newList;
+		
+	}
+	
+	return($adminIds);
+	
+}
+
+function isCurrentUserClanAdmin($clanDataFile = CLAN_DATA_FILE) {
+
+	$destinyIds = getDestinyIdsForCurrentUser();
+
+	$adminIds = getMulticlanAdminIdList($clanDataFile);
+	
+	$retVal = false;
+	
+	foreach ($destinyIds as $thisId=>$value) {
+		if (in_array($destinyIds[$thisId]['membershipId'], $adminIds)) {
+			$retVal = true;
+		} // end if is in admin array
+	} // end foreach id
+	
+	return($retVal);
+	
+} // end function isCurrentUserClanAdmin()
 
 ?>
